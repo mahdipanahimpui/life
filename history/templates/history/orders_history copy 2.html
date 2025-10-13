@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تاریخچه سفارشات - سرویس چاپ فاکتور اختصاصی</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset و استایل‌های پایه */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4a6cf7;
+            --primary-dark: #2f4fdf;
+            --secondary: #28a745;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+            --border: #e0e0e0;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            padding-top: 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        /* نوار ناوبری */
+        .back-to-products {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .back-to-products:hover {
+            background: #f0f5ff;
+            transform: translateX(-5px);
+        }
+        
+        /* محتوای اصلی */
+        .content {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f3ff;
+            font-weight: 700;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        /* کارت سفارش */
+        .order-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .order-id {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .order-date {
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+
+        .status {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+
+        .order-details {
+            padding: 20px;
+        }
+
+        .order-items {
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .item-image {
+            background: linear-gradient(135deg, #f0f3ff 0%, #e6f0ff 100%);
+            border-radius: 8px;
+            height: 50px;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--primary);
+        }
+
+        .item-image i {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .item-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #fafafa;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .order-total {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .delivery {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .delivery-price {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .delivery-price:hover {
+            background: #f0f5ff;
+        }
+
+
+        /* صفحه‌بندی */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover {
+            border-color: var(--primary);
+            background: #f0f5ff;
+        }
+
+        .pagination-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn:disabled:hover {
+            border-color: var(--border);
+            background: white;
+        }
+
+        /* پیام عدم وجود سفارش */
+        .no-orders {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .no-orders i {
+            font-size: 5rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .no-orders h3 {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .no-orders p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .order-header, .order-footer {
+                flex-direction: column;
+            }
+            
+            .order-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .order-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .item-info {
+                width: 100%;
+            }
+            
+            .item-price {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <a href="{% url 'home:home' %}" class="back-to-products">
+        <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+    </a>
+    
+    <div class="section">
+        <h2><i class="fas fa-history"></i> تاریخچه سفارشات ماه گذشته</h2>
+        
+        <div class="orders-list" id="orders-list">
+            {% for shopping_cart in shopping_carts %}
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-id">کد رهگیری سفارش: {{ shopping_cart.ref_code }}</div>
+                    <div class="order-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>تاریخ: {{ shopping_cart.paid_at }}</span>
+                    </div>
+                    <div class="order-status status">وضعیت: {{ shopping_cart.status }}</div>
+                </div>
+                
+                <div class="order-details">
+                    <div class="order-items">
+
+                    {% for product_order in shopping_cart.invoice_orders.all %}
+                        <div class="order-item">
+                            <div class="item-info">
+                                <div class="item-image">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                                <div>
+                                    <div class="item-name">{{ product_order.invoice_product.title }}</div>
+                                    <div class="item-meta">
+                                        <span>نوع: {{ product_order.invoice_product.invoice_type.type }}  -  </span>
+                                        <span>کاغذ: {{ product_order.invoice_product.paper_type.type }}  -  </span>
+                                        <span>ابعاد: {{ product_order.invoice_product.paper_size.size }}  -  </span>
+                                        <span>نوع رنگی: {{ product_order.invoice_product.color_mode.mode }}  -  </span>
+                                        <span>تیراژ: {{ product_order.invoice_product.circulation.circulation }}عدد</span>
+                                        <br>
+
+                                    {% if product_order.with_number %}
+                                        <span>شروع شماره از: {{ product_order.start_from }}  -  </span>
+                                        <span>رنگ شماره: {{ product_order.color.name }}  -  </span>
+                                        {% if product_order.numbering_location %}
+                                        <span>محل شماره گذاری: {{ product_order.numbering_location }}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span>بدون شماره</span>
+                                    {% endif %}
+                                        <br>
+                                        <span>نوع صحافی: {{ product_order.binding_type }}  -  </span>
+                                        <span>جهت صحافی: {{ product_order.binding_direction }}</span>
+                                    
+                                {% if product_order.additional_services.all %}
+                                        <br>
+                                        خدمات تکمیلی: 
+                                    {% for service in product_order.additional_services.all %}
+                                        <span>{{ service.service }}  -  </span>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if product_order.design_requirement %}
+                                        <br>
+                                        
+                                        <span>نیاز به طراحی</span>
+                                {% endif %}
+
+                                    {% if product_order.file %}
+                                        <br>
+                                        <span class="file-link"><a href="{{ product_order.file.path }}">فایل آپلود شده</a></span>
+                                    {% endif %}
+                                
+                                    {% if product_order.description %}
+                                        <br>
+                                        <span>توضیحات: {{ product_order.description }}</span>
+                                    {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-price">{{ product_order.total_price }}</div>
+                        </div>
+                    {% endfor %}
+
+                        <!-- سفارش تراکت‌ها -->
+                    {% for product_order in shopping_cart.flyer_orders.all %}
+                        <div class="order-item">
+                            <div class="item-info">
+                                <div class="item-image">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <div>
+                                    <div class="item-name">{{ product_order.flyer_product.title }}</div>
+                                    <div class="item-meta">
+                                        <span>نوع: {{ product_order.flyer_product.side.type }}  -  </span>
+                                        <span>کاغذ: {{ product_order.flyer_product.paper_type.type }}  -  </span>
+                                        <span>ابعاد: {{ product_order.flyer_product.paper_size.size }}  -  </span>
+                                        <span>نوع رنگی: {{ product_order.flyer_product.color_mode.mode }}  -  </span>
+                                        <span>تیراژ: {{ product_order.flyer_product.circulation.circulation }}عدد</span>
+
+                                        {% if product_order.additional_services.all %}
+                                        <br>
+                                        {% for service in product_order.additional_services.all %}
+                                        <span>{{ service.service }} - </span>
+                                        {% endfor %}
+                                        {% endif %}
+            
+                                        {% if product_order.design_requirement %}
+                                        <br>
+                                        <span>نیاز به طراحی</span>
+                                        {% endif %}
+            
+                                        {% if product_order.file_front %}
+                                        <br>
+                                            <span class="file-link"><a href="{{ product_order.file_front.path }}">فایل آپلود شده(روی طرح)</a></span> - 
+                                        {% endif %}
+                
+                                        {% if product_order.file_back %}
+                                            <span class="file-link"><a href="{{ product_order.file_back.path }}">فایل آپلود شده(پشت طرح)</a></span> - 
+                                        {% endif %}
+                                    
+                                        {% if product_order.description %}
+                                            <br>
+                                            <span>توضیحات: {{ product_order.description }}</span>
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-price">{{ product_order.total_price }}</div>
+                        </div>
+                    {% endfor %}
+
+                    <!-- سفارش سرنسخه‌ها -->
+                        {% for product_order in shopping_cart.prescription_orders.all %}
+                        <div class="order-item">
+                            <div class="item-info">
+                                <div class="item-image">
+                                    <i class="fas fa-file-prescription"></i>
+                                </div>
+                                <div>
+                                    <div class="item-name">{{ product_order.prescription_product.title }}</div>
+                                    <div class="item-meta">
+                                        <span>کاغذ: {{ product_order.prescription_product.paper_type.type }}  -  </span>
+                                        <span>ابعاد: {{ product_order.prescription_product.paper_size.size }}  -  </span>
+                                        <span>نوع رنگی: {{ product_order.prescription_product.color_mode.mode }}  -  </span>
+                                        <span>تیراژ: {{ product_order.prescription_product.circulation.circulation }}عدد</span>
+
+                                    {% if product_order.glue_attach %}
+                                        <br>
+                                        <span>نیاز به سرچب  -  </span>
+                                        <span>جهت سرچسب: {{ product_order.binding_direction }}</span>
+                                    {% else %}
+                                        <span>بدون سرچسب</span>
+                                    {% endif %}
+            
+                                    
+                                    {% if product_order.additional_services.all %}
+                                            <br>
+                                        {% for service in product_order.additional_services.all %}
+                                            <span>{{ service.service }}  -  </span>
+                                        {% endfor %}
+                                    {% endif %}
+                
+                                    {% if prescriptionorder.design_requirement %}
+                                            <br>
+                                            <span>نیاز به طراحی</span>
+                                    {% endif %}
+                
+                                        {% if product_order.file %}
+                                            <br>
+                                            <span class="file-link"><a href="{{ product_order.file.path }}">فایل آپلود شده</a></span>
+                                        {% endif %}
+                                    
+                                        {% if product_order.description %}
+                                            <br>
+                                            <span>توضیحات: {{ product_order.description }}</span>
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-price">{{ product_order.total_price }}</div>
+                        </div>
+                    {% endfor %}
+                        
+
+
+
+                    </div>
+                </div>
+                
+                <div class="order-footer">
+                    <div class="order-actions">
+                        <button class="delivery delivery-price">
+                            {{ shopping_cart.delivery_option.price }}
+                        </button>
+
+                    </div>
+                    <div class="order-total">{{ shopping_cart.paid_price }}</div>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+        
+        <!-- صفحه‌بندی -->
+        <div class="pagination" id="pagination">
+            <button class="pagination-btn" id="prev-btn" disabled>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div id="page-numbers"></div>
+            <button class="pagination-btn" id="next-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // مدیریت صفحه‌بندی
+    document.addEventListener('DOMContentLoaded', function() {
+        const ordersList = document.getElementById('orders-list');
+        const pageNumbers = document.getElementById('page-numbers');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        const ordersPerPage = 5; // تعداد سفارشات در هر صفحه
+        const orderCards = Array.from(ordersList.getElementsByClassName('order-card'));
+        const totalPages = Math.ceil(orderCards.length / ordersPerPage);
+        let currentPage = 1;
+        
+        // فرمت‌دهی قیمت‌ها
+        function formatPrices() {
+            // قیمت‌های محصولات
+            const itemPrices = document.querySelectorAll('.item-price');
+            itemPrices.forEach(element => {
+                const price = parseFloat(element.textContent) || 0;
+                element.textContent = price.toLocaleString() + ' تومان';
+            });
+            
+            // قیمت‌های دلیوری
+            const deliveryPrices = document.querySelectorAll('.delivery-price');
+            deliveryPrices.forEach(element => {
+                const price = parseFloat(element.textContent) || 0;
+                element.textContent = 'هزینه ارسال:    ' + price.toLocaleString() + ' تومان';
+            });
+            
+            // قیمت‌های کل
+            const orderTotals = document.querySelectorAll('.order-total');
+            orderTotals.forEach(element => {
+                const price = parseFloat(element.textContent) || 0;
+                element.textContent = price.toLocaleString() + ' تومان';
+            });
+        }
+        
+        // ایجاد دکمه‌های صفحه‌بندی
+        function createPaginationButtons() {
+            pageNumbers.innerHTML = '';
+            
+            // نمایش حداکثر 5 دکمه صفحه
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'pagination-btn';
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => goToPage(i));
+                pageNumbers.appendChild(pageBtn);
+            }
+        }
+        
+        // رفتن به صفحه مشخص
+        function goToPage(page) {
+            currentPage = page;
+            updateOrdersDisplay();
+            updatePaginationButtons();
+            createPaginationButtons();
+        }
+        
+        // به‌روزرسانی نمایش سفارشات
+        function updateOrdersDisplay() {
+            const startIndex = (currentPage - 1) * ordersPerPage;
+            const endIndex = startIndex + ordersPerPage;
+            
+            orderCards.forEach((card, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // به‌روزرسانی وضعیت دکمه‌های صفحه‌بندی
+        function updatePaginationButtons() {
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+        
+        // رویدادهای دکمه‌های قبلی و بعدی
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        });
+        
+        // مقداردهی اولیه
+        if (orderCards.length > 0) {
+            updateOrdersDisplay();
+            updatePaginationButtons();
+            createPaginationButtons();
+        } else {
+            // اگر سفارشی وجود ندارد، صفحه‌بندی را مخفی کن
+            document.getElementById('pagination').style.display = 'none';
+            
+            // پیام عدم وجود سفارش اضافه کن
+            const noOrdersDiv = document.createElement('div');
+            noOrdersDiv.className = 'no-orders';
+            noOrdersDiv.innerHTML = `
+                <i class="fas fa-box-open"></i>
+                <h3>هیچ سفارشی یافت نشد</h3>
+                <p>شما تاکنون سفارشی ثبت نکرده‌اید.</p>
+            `;
+            ordersList.appendChild(noOrdersDiv);
+        }
+        
+        // فرمت‌دهی قیمت‌ها پس از لود صفحه
+        formatPrices();
+    });
+</script>
+</body>
+</html>

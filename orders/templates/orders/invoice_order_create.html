@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'orders/css/style.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    <title>چاپ لِس | سفارش چاپ فاکتور، قبض</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <a href="{% url 'products:invoice_products' %}" class="back-to-products">
+        <i class="fas fa-arrow-right"></i> بازگشت به لیست محصولات
+    </a>
+    
+    <div class="section">
+        <!-- بخش محصول و سفارش در یک بخش یکپارچه -->
+
+        <div class="product-detail">
+            <div class="product-image">
+                <i class="fas fa-file-invoice"></i>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">{{ invoice_product.title }}</h1>
+                <p class="product-description">{{ invoice_product.description }}</p>
+                
+                <div class="product-meta">
+                    <div class="meta-card">
+                        <span class="meta-label">جنس کاغذ:</span>
+                        <span class="meta-value">{{ invoice_product.paper_type.type }}</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">اندازه:</span>
+                        <span class="meta-value">{{ invoice_product.paper_size.size }}</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">نوع رنگی:</span>
+                        <span class="meta-value">{{ invoice_product.color_mode.mode }}</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">نوع فاکتور:</span>
+                        <span class="meta-value">{{ invoice_product.invoice_type.type }}</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">تیراژ:</span>
+                        <span class="meta-value">{{ invoice_product.circulation }} عدد</span>
+                    </div>
+                </div>
+                
+                <div class="product-price" id="productPrice"></div>
+            </div>
+        </div>
+        
+        <form class="order-form" method="post" enctype="multipart/form-data" id="invoiceForm">
+            {% csrf_token %}
+            <!-- ردیف سوم: نوع صحافی و جهت صحافی -->
+
+            <input type="hidden" name="invoice_product" value="{{ invoice_product.id }}">
+            
+            <!-- ردیف سوم: نوع صحافی و جهت صحافی -->
+            <div class="double-row full-width">
+                <div class="form-group">
+                    <label for="bindingType" class="required">نوع صحافی</label>
+                    {{ form.binding_type }}
+                </div>
+
+                <div class="form-group">
+                    <label for="bindingDirection" class="required">جهت صحافی</label>
+                    {{ form.binding_direction }}
+                </div>
+            </div>
+            
+            <!-- بخش جدید برای شماره‌گذاری -->
+            <div class="form-group full-width">
+                <div class="numbering-section">
+                    <div class="numbering-field">
+                        <label for="startNumber" class="required">شروع شماره از</label>
+                        {{ form.start_from }}
+                    </div>
+
+                    <div class="no-number-section">
+                        <label class="product-option-checkbox" id="noNumberCheckbox">
+                            {{ form.with_number }}
+                            <div class="no-number-text">
+                                بدون شماره
+                            </div>
+                        </label>
+                    </div>  
+
+                </div>
+                
+                <!-- فیلد جدید برای محل شماره گذاری (جابجا شده به زیر دکمه) -->
+                <div class="numbering-field" style="margin-top: 15px;">
+                    <label for="numberingLocation" class="required">محل شماره گذاری</label>
+                    {{ form.numbering_location }}
+                </div>
+                
+                <!-- بخش جدید برای انتخاب رنگ -->
+
+
+                <div class="color-options-container">
+                    <div class="color-title">رنگ شماره</div>
+                        <div class="color-options">
+                            {% for color in colors %}
+                            <input type="radio" name="color" id="color{{ color.id }}" class="color-radio" value="{{ color.id }}" 
+                                {% if forloop.first %}checked{% endif %}>
+                            <label for="color{{ color.id }}" class="color-radio-label"  style="--color-code: {{ color.code }};">
+                                {{ color.name }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    <p class="info"> نکته! درچاپ ملخی کلمه "شماره" نیز چاپ می‌شود، مثال "شماره: ۱۶۳۰"</p>
+                    </div>
+                </div>
+
+            </div>
+            
+
+            <div class="form-section-title full-width">
+                <h3>خدمات تکمیلی</h3>
+            </div>
+            
+            {% for service in additional_services %}
+            <div class="additional-service full-width">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service_{{ service.id }}" name="additional_services" 
+                           value="{{ service.id }}" data-price="{{ service.price }}">
+                    <label for="service_{{ service.id }}">{{ service.service }}</label>
+                </div>
+                {% if service.description %}
+                <p class="help-text">{{ service.description }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div id="wholeOptions" class="conditional-section full-width">
+
+                <div class="additional-service full-width">
+                    <div class="checkbox-group help-text">
+                        {{ form.design_requirement }}
+                        <label class="need-design" for="{{ form.design_requirement.id_for_label }}" data-price="{{ desing_price }}">
+                            نیاز به انجام طراحی؟ {{ desing_price }} تومان
+                        </label>
+                    </div>
+                    
+                    <p style="text-align: center;">در صورتی که نیاز به طراحی دارید تماس حاصل فرمایید و یا به پیام رسان‌های تلگرام، ایتا و واتساپ به شماره (۰۷۹ ۶۹ ۵۹ ۰۹۲۰) مراجعه کنید.</p>
+                </div>
+                
+                <br>
+                <div class="form-group full-width">
+                    <label for="fileUpload" >آپلود فایل</label>
+                    <div class="file-upload" id="fileUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>فایل خود را به اینجا بکشید یا برای انتخاب کلیک کنید</p>
+                        <p class="file-types">لطفا فایل و تصاویر خود را به منظور چاپ و یا طراحی ارسال نمایید.</p>
+                        <p id="fileNames"></p>
+                    </div>
+                    {{ form.file }}
+                    <p class="help-text">فایل‌ با فرمت JPG و فرمت رنگی CMYK مورد قبول است، در صورت نیاز به ارسال چند فایل آنها را به صورت یک فایل فشرده ارسال کنید. از چاپ کردن موارد تن‌پلات(تمام رنگی) معذوریم</p>
+                </div>
+            
+
+                <div class="form-group full-width">
+                    <label for="{{ form.description.id_for_label }}">توضیحات تکمیلی</label>
+                    {{ form.description }}
+                </div>
+
+                <div class="submit-section full-width">
+                    <h3>مجموع مبلغ سفارش</h3>
+                    <div style="display: none;"></div>
+                    <div class="total-price" id="totalPrice">0 تومان</div>
+                    <button type="submit" class="submit-btn">ثبت سفارش و ادامه</button>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}
+
+{% block extra-scripts %}
+    <script>
+
+    
+    const basePrice = parseInt("{{ invoice_product.base_price }}".replace(/,/g, ''));
+    // قیمت طراحی
+    const designPrice = parseInt("{{ desing_price }}".replace(/,/g, ''));
+    
+    // عناصر DOM
+    const totalPriceElement = document.getElementById('totalPrice');
+    const designCheckbox = document.getElementById('{{ form.design_requirement.id_for_label }}');
+    const serviceCheckboxes = document.querySelectorAll('input[name="additional_services"]');
+    const basePriceElement = document.getElementById('productPrice')
+
+    if (basePrice == 0){
+        basePriceElement.textContent = 'تماس بگیرید'
+    } else {
+        basePriceElement.textContent = basePrice.toLocaleString('fa-IR') + ' تومان';
+    }
+
+    
+
+    // تابع برای محاسبه و به روزرسانی قیمت کل
+    function updateTotalPrice() {
+        let total = basePrice;
+
+        if (total == 0) {
+            totalPriceElement.textContent = 'تماس بگیرید'
+        } else {
+        // اضافه کردن هزینه خدمات اضافی
+            serviceCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const servicePrice = parseInt(checkbox.getAttribute('data-price'));
+                    total += servicePrice;
+                }
+            });
+            
+            // اضافه کردن هزینه طراحی
+            if (designCheckbox && designCheckbox.checked) {
+                total += designPrice;
+            }
+            
+            // به روزرسانی نمایش قیمت
+            // totalPriceElement.textContent = total.toLocaleString('fa-IR') + ' تومان';
+            totalPriceElement.textContent = total.toLocaleString('fa-IR') + ' تومان';
+        }
+
+    }
+    
+    // افزودن event listener به همه checkboxها
+    serviceCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateTotalPrice);
+    });
+    
+    if (designCheckbox) {
+        designCheckbox.addEventListener('change', updateTotalPrice);
+    }
+    
+    // محاسبه اولیه قیمت
+    updateTotalPrice();
+    
+    </script>
+    <script src="{% static 'orders/js/invoice_order_script.js' %}"></script>
+
+{% endblock %}

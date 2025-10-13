@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    <title>چاپ لِس | چاپ تراکت</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="section">
+            
+            <div class="products_page">
+                <!-- بخش نوع سفارش با دکمه‌های زیبا -->
+                {% include 'products/product_type.html' %}
+                    
+                    <!-- بخش فیلترها -->
+                    <div id="productOptions" class="filters-container full-width">                    
+                        <div class="side-by-side-fields">
+                            <div class="filter-group">
+                                <label for="paperType">جنس کاغذ</label>
+                                <select class="filter-control" id="paperType">
+                                    <option value="all">همه انواع</option>
+                                    {% for paper in paper_types %}
+                                    <option value="{{ paper.type }}">{{ paper.type }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                                
+                            <div class="filter-group">
+                                <label for="paperSize">اندازه</label>
+                                <select class="filter-control" id="paperSize">
+                                    <option value="all">همه اندازه‌ها</option>
+                                    {% for size in paper_sizes %}
+                                    <option value="{{ size.size }}">{{ size.size }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="sideType">تک رو / دورو</label>
+                                <select class="filter-control" id="sideType">
+                                    <option value="all">همه انواع</option>
+                                    {% for type in side_types %}
+                                    <option value="{{ type.type }}">{{ type.type }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="colorMode">نوع رنگ</label>
+                                <select class="filter-control" id="colorMode">
+                                    <option value="all">همه انواع</option>
+                                    {% for mode in color_modes %}
+                                    <option value="{{ mode.mode }}">{{ mode.mode }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="circulation">تیراژ</label>
+                                <select class="filter-control" id="circulation">
+                                    <option value="all">همه تیراژها</option>
+                                    {% for circ in circulations %}
+                                    <option value="{{ circ.circulation }}">{{ circ.circulation }} عدد</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                <!-- بخش محصولات -->
+                <div id="productsSection" class="products-section full-width">
+                    <div id="productsGrid" class="products-grid">
+                        <!-- محصولات توسط JavaScript ایجاد خواهند شد -->
+                    </div>
+                    
+                    <!-- صفحه‌بندی بهبود یافته -->
+                    <div class="pagination-container" id="paginationContainer">
+                        <button class="pagination-btn" id="firstPageBtn" disabled>
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="pagination-btn" id="prevPageBtn" disabled>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <div class="page-numbers" id="pageNumbers">
+                            <!-- شماره صفحات اینجا ایجاد می‌شود -->
+                        </div>
+                        
+                        <button class="pagination-btn" id="nextPageBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="pagination-btn" id="lastPageBtn">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra-scripts %}
+    <script>
+     const productsData = JSON.parse('{{ products_data|escapejs }}')
+    </script>
+    <script src="{% static 'products/js/product_type.js' %}"></script>
+    <script src="{% static 'products/js/flyer_script.js' %}"></script>
+    <script src="{% static 'js/products_base_script.js' %}"></script>
+{% endblock %}

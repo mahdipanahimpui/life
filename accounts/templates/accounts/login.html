@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'accounts/css/login-style.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>چاپ لِس | ورود/ثبت‌نام</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="login-container">
+        <div class="login-left">
+            <div class="login-logo">
+                <i class="fas fa-print"></i>
+                <h1>چاپار</h1>
+                <p>سرویس چاپ تخصصی</p>
+            </div>
+            
+            <div class="login-features">
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <p>ورود سریع و امن با کد تأیید</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>اطلاعات شما نزد ما محفوظ است</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>مدیریت آسان سفارشات چاپ</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-right">
+            <div class="login-header">
+                <h2>ورود به حساب کاربری</h2>
+                <p>برای دسترسی به خدمات چاپار، لطفاً وارد شوید</p>
+            </div>
+            
+            <form class="login-form"  action="" method="post" id="phoneForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="phone">شماره موبایل</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                        {{ form.phone_number }}
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="sendOtpBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    دریافت کد تأیید
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>با ورود به چاپار، <a href="{% url 'extra:terms' %}">قوانین و مقررات</a> را می‌پذیرید.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock   %}
+
+
+
+{% block extra-scripts %}
+    <script src="{% static 'accounts/js/login-script.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'extra/css/contact_us.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    <title>چاپ لِس | ارتباط با ما</title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <section class="hero">
+        <div class="hero-content">
+            <h2>تماس با چاپ‌لِس</h2>
+            <p>ما اینجا هستیم تا به سوالات شما پاسخ دهیم و بهترین خدمات چاپ را ارائه کنیم</p>
+        </div>
+    </section>
+
+    <div class="contact-section">
+        <div class="contact-us-info">
+            <h2 class="section-title">اطلاعات تماس</h2>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-content">
+                    <h3>آدرس</h3>
+                    <p>تهران، ظهیرالاسلام | کرج، محمدشهر</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="info-content">
+                    <h3>تلفن</h3>
+                    <p><a href="tel:+982112345678">۰۷۹ ۶۹ ۵۹ ۰۹۲۰</a></p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                    <h3>ایمیل</h3>
+                    <p><a href="mailto:chaples.ir@gmail.com">chaples.ir@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="info-content">
+                    <h3>ساعات کاری</h3>
+                    <p>شنبه تا پنجشنبه: ۸ صبح تا ۵ عصر</p>
+                </div>
+            </div>
+            
+            <div class="contactus-social-links">
+                <!-- <a href="#"><i class="fab fa-instagram"></i></a> -->
+
+                <a href="https://t.me/ChapLes_ir" class="social-link">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAe1BMVEX////6/f643vZ8xvFItO0kq+t0wvCv2vXz+f2SzvEDpeczruoyq+fX7PrC4vai0/IhpuQxqubq9fwwquVMseZmuuoAn96Bxewtp+Li8fp3vOOYy+mHxOgqo9xuuuUAltooodoAmdUkndVGp9gln9dgsNwAlNCRxuQzodURH7loAAABCklEQVR4AayRVQKEIBRFsRO7u3X/Kxx4z/Z3jnXhSJM/IIiSrCiyqulfZZiKYjFsxZRemqJBFNO5O8e0H5ju5ejhLiue43n+BzPYpeGFF77nRazsxUfDS3lJJAokzcIwyUGKXrbjeSlUpTwbIItdJZEmEMJuEvNiBDKCRklB4c+SvfBfkB6Prs6jk1R8EglIqEnqGrvQm7bkX5rUDJQsdJFLdTFJNJwhSshNx2zCQUfKjv9fQ9aSGukalA3ICofquxM4Dkg9xT+L4ZR9I+w/j+hYaToZ+nIe2Heh53EuaFBz15fkpFxY3cXUF+SGuNzlUpIHwbz0hxopeZOv48LYKvobjrTLwUF8OgcAV58l6Nc1eEoAAAAASUVORK5CYII="
+                    alt="Telegram" style="width: 24px; height: 24px;">
+                </a>
+
+                <a href="https://wa.me/989205969079?text=سلام%0Aدرخواست%20مشاوره%20در%20زمینه%20خدمات%20چاپ%20دارم" class="social-link">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAUVBMVEVHcEzz9PP3+Pfq7er19vb//v/8/PyltKrx+PKz5b1z04cwxlYMwUMAvCkAvjMAvzoDwUBGTUiH2JiY3aXX8Nxcznbo6ulJymfQ1NHJzcq9wr8gaKU6AAAAG3RSTlMAOlmJ2f//Lvj+/v///////xX+/v7+rP56aF7BK/qjAAABgklEQVR4AX2Sh5qEMAiEbYyJqXa993/QAza5z2v7b8UMMKDNN9qu77u2+Yd+oMLQ/3UMeoCfktHIVTs5791kRWvGb73BV6YQU2ZSDJPo28c5hzYk/0UKlghfipnzl+C/ERZWVMHA59H7nL8pVp6mUTqp7310Ln1TbESdCtgQJ0fO2J+KnNl4cbhGnx0b3aJ/EO1rkoPIZZ9WAuCeNhLnHGrRBJUDtH53YdQmyEaWL1Lh+yCSxEsoeQn4btJr27kZQYtclym279uSqqMI1lTntqpI6VlhVg9M9gArsg92Cal6mHlPdfx8Emg75S6YV9dNN3WAaskTsi0Zh6bEMUH2cLHLqvDsA4LsTjzeerNhqvscJpYwa5Q9gS0w/XODKbjF2jPK3PXJrIMWcooxiyGSAkKvHX+QHICPRhnYQ0mr5LADpYFuShunWIeJ2VI5Z25gM8TA7jFEfu9Whr2awoEKi8ymYmAYm4oBh8fHfA8vESRme5URxz0XN9cxMMelcYWDt3wCfLshX3540l4AAAAASUVORK5CYII="
+                    alt="Whatsapp" style="width: 24px; height: 24px;">
+                </a>
+
+
+                <a href="https://eitaa.com/Chaples_ir" class="social-link">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAMAAACnDzTfAAAATlBMVEVHcEzvfxrvfxrvfxnvfxrvfxrvfxrvfxrvfxnvfxr////vegHudgDucgDvfRHwhSn86Nz1sIH2vJb50bj++PPxjj773cv98Oj3xaTznF0U+Sv7AAAACnRSTlMAAgH/s8qdM/HmEfge4AAAAUhJREFUKJFVklkWwjAIRaPpZCDzULv/jQoh0cqHx+bymJUi27eXvttr29Ww9fcKiAj8ZxH01TjUMeccgemLyHOZCGszYhFFuU9k3+ZrkZW72qYqmJvxyzaz/SOTSLiqEVBSlZZbd2qU8RAGiR9ytdSC1fnOnGdNtW4ECeZNMX1nSJ4FfAJp0xZzucG6zNvQSOjA1tMES4JLjWwJgX481Mi1VKdtMmrU7zT+OriAJ3F2ZsxpR60dIaMGStLdWKZRYzLNci2ucilOYrZKnWFk514nl3lq9igX92gj+wrrikuTA2/O8UJ4Eces0ySahuORXfSVqT9hUgXWaMMZCofm3RLjHQGzgHZ24ftg175biH1B8RRUZa6b3MT9HooXRDchF4hxooxjU3yFz6Nv16VQSnh7nPfb7/Oxfs8WYYioELHHvhz/N7/0m/8AaUEaOk07uDAAAAAASUVORK5CYII="
+                    alt="Eitaa" style="width: 24px; height: 24px;">
+                </a>
+
+            </div>
+        </div>
+        
+
+    </div>
+
+
+
+    <section class="faq-section">
+        <h2 class="section-title">سوالات متداول</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>چطور می‌توانم از خدمات چاپ‌لِس استفاده کنم؟</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>برای استفاده از خدمات چاپ‌لِس می‌توانید از طریق وبسایت ثبت سفارش کنید، با شماره‌های پشتیبانی تماس بگیرید یا به دفتر ما مراجعه کنید. همچنین می‌توانید از طریق شبکه‌های اجتماعی با ما در ارتباط باشید.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>زمان تحویل سفارشات چقدر است؟</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>زمان تحویل بستگی به نوع و حجم سفارش دارد. معمولاً سفارشات استاندارد در حدود ۲ روز کاری آماده می‌شوند. برای سفارشات فوری نیز خدمات اکسپرس با تحویل ۲۴ ساعته ارائه می‌شود.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>آیا امکان طراحی هم دارید؟</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>بله، تیم طراحی چاپ‌لِس آماده ارائه خدمات طراحی حرفه‌ای است. شما می‌توانید از خدمات طراحی و چاپ به صورت پکیج کامل استفاده کنید.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>چه روش‌های پرداختی دارید؟</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>چاپ‌لِس از انواع پرداخت پشتیبانی می‌کند که شامل پرداخت آنلاین، کارت به کارت،  و پرداخت نقدی در دفتر می‌باشد.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
+
+{% block extra-scripts %}
+
+<script src="{% static 'extra/js/contact_us.js' %}"></script>
+
+{% endblock %}

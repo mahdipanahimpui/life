@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'extra/css/about_us.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    <title>چاپ لِس | درباره ما</title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <section class="hero">
+        <div class="hero-content">
+            <h2>درباره چاپ‌لِس</h2>
+            <p>ما با بیش از یک دهه تجربه در زمینه چاپ و تبلیغات، همراه مطمئن کسب و کار شما هستیم</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">تاریخچه چاپ‌لِس</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>چاپ‌لِس در سال ۱۳۹۰ با هدف ارائه خدمات چاپ با کیفیت و سریع به کسب و کارهای ایرانی تأسیس شد. ما کار خود را با یک دستگاه چاپ کوچک آغاز کردیم و امروز با بهره‌گیری از پیشرفته‌ترین دستگاه‌های چاپ و یک تیم متخصص ۱۰ نفره، به یکی از پیشروهای صنعت چاپ کشور تبدیل شده‌ایم.</p>
+                <p>طی این سال‌ها، ما به بیش از ۵۰۰۰ کسب و کار مختلف خدمات چاپ ارائه داده‌ایم و رضایت مشتریان همواره اولویت اصلی ما بوده است. افتخار می‌کنیم که در رشد و موفقیت کسب‌وکارهای ایرانی نقش داشته‌ایم.</p>
+            </div>
+            <div class="about-text">
+                <p>امروز چاپ‌لِس امکان دسترسی به خدمات چاپ با کیفیت را برای همه فراهم کرده است. ما همواره در تلاش هستیم تا با بهره‌گیری از فناوری‌های روز و نوآوری در خدمات، تجربه بهتری برای مشتریان خود خلق کنیم.</p>
+                <p>ماموریت ما تنها چاپ نیست، بلکه کمک به رشد و دیده شدن کسب و کارهای ایرانی با ابزارهای تبلیغاتی مؤثر و باکیفیت است.</p>
+            </div>
+        </div>
+
+        <div class="mission-vision">
+            <div class="mission">
+                <h3><i class="fas fa-bullseye"></i> ماموریت ما</h3>
+                <p class="about-text">ارائه خدمات چاپ با کیفیت برتر، قیمت رقابتی و تحویل به موقع با بهره‌گیری از فناوری‌های روز و نیروی انسانی متخصص، به گونه‌ای که مشتریان ما بتوانند با خیال راحت بر رشد کسب و کار خود تمرکز کنند.</p>
+            </div>
+            <div class="vision">
+                <h3><i class="fas fa-eye"></i> چشم‌انداز ما</h3>
+                <p class="about-text">تبدیل شدن به برترين ارائه‌دهنده خدمات چاپ و تبلیغات در منطقه، با گسترش سرویس‌های نوین.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">چرا چاپ‌لِس؟</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>کیفیت برتر</h3>
+                <p>استفاده از بهترین مواد اولیه و پیشرفته‌ترین دستگاه‌های چاپ برای تضمین کیفیت نهایی محصولات</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>تحویل سریع</h3>
+                <p>تحویل سفارشات در کوتاه‌ترین زمان ممکن با روش‌های ارسال متنوع</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>پشتیبانی </h3>
+                <p>پشتیبانی همه‌روزه حتی در روزهای تعطیل برای پاسخگویی به سوالات و حل مشکلات مشتریان</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="team-section">
+        <h2 class="section-title">تیم ما</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="member-info">
+                    <h3>محمد رضایی</h3>
+                    <p class="member-role">مدیرعامل و بنیان‌گذار</p>
+                    <p>مؤسس چاپار با ۱۵ سال سابقه در صنعت چاپ و تبلیغات</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="member-info">
+                    <h3>فاطمه محمدی</h3>
+                    <p class="member-role">مدیر فنی</p>
+                    <p>کارشناس ارشد گرافیک و ناظر کیفی تولید تمام محصولات</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="member-info">
+                    <h3>علی حسینی</h3>
+                    <p class="member-role">مدیر فروش</p>
+                    <p>متخصص بازاریابی و توسعه کسب و کار با ۱۰ سال سابقه</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="member-info">
+                    <h3>زهرا کریمی</h3>
+                    <p class="member-role">پشتیبانی مشتریان</p>
+                    <p>مسئول رسیدگی به درخواست‌ها و حل مشکلات مشتریان</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+</div>
+
+
+{% endblock %}
+
+{% block extra-scripts %}
+
+
+{% endblock %}

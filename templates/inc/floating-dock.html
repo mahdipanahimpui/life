@@ -1,0 +1,24 @@
+<!-- دکمه‌های شناور برای موبایل و تبلت -->
+<div class="floating-buttons" >
+    <a href="" class="floating-btn" id="floating-order" data-url="{% url 'home:home' %}">
+        <i class="fas fa-plus"></i>
+        <span>شروع سفارش</span>
+    </a>
+    <a href="#" class="floating-btn" id="floating-price">
+        <i class="fas fa-tags"></i>
+        <span>لیست قیمت</span>
+    </a>
+    <a href="{% url 'cart:shopping_cart' %}" class="floating-btn" id="floating-cart">
+        <i class="fas fa-shopping-cart">    
+            {% if item_count %}
+            <span class="floating-cart-count">{{ item_count }}</span>
+            {% endif %}
+        </i>
+
+        <span>سبد خرید</span>
+    </a>
+    <!-- <a href="#" class="floating-btn" id="floating-account">
+        <i class="fas fa-user"></i>
+        <span>حساب کاربری</span>
+    </a> -->
+</div>

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="چاپ فاکتور، قبض، تراکت و سرنسخه اختصاصی - چاپلِس ✅ ظرفیت چاپ روزانه ۵۰۰,۰۰۰ برگ ✅ ارسال سریع و رایگان ✅ کیفیت بالا">    <meta name="keywords" content="چاپ فاکتور, چاپ تراکت, سرنسخه, چاپ اختصاصی, چاپ لس، چاپ قبض، قیمت چاپ فاکتور، چاپ فاکتور ارزان، قیمت چاپ تراکت، چاپ تراکت ارزان">
+    <meta name="author" content="چاپ لس">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="چاپ لس - خدمات چاپ فاکتور، قبض، تراکت و سرنسخه">
+    <meta property="og:description" content="چاپ اختصاصی با کیفیت بالا، ارسال سریع و قیمت مناسب">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chaples.ir">
+    <meta property="og:image" content="{% static 'img/logo.jpeg' %}">
+    <meta property="og:locale" content="fa_IR">
+
+    <link rel="icon" href="{% static 'img/print_logo.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/print_logo.ico' %}" type="image/x-icon">
+
+    
+
+    {% block title %} {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    
+    {% block extra-headers %}{% endblock %}
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "PrintingService",
+            "name": "چاپ لس",
+            "description": "سرویس چاپ اختصاصی فاکتور، قبض، تراکت و سرنسخه",
+            "serviceType": "چاپ اختصاصی",
+            "areaServed": "Iran",
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "خدمات چاپ",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "چاپ فاکتور"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "چاپ قبض"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "چاپ تراکت"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "چاپ سرنسخه"
+                        }
+                    }
+                ]
+            }
+        }
+    </script>
+</head>
+<body>
+    {% include 'inc/navbar.html' %}
+    {% include 'inc/messages.html' %}
+    {% include 'inc/notification.html' %}
+
+    {% block content %} {% endblock %}
+
+
+    {% include 'inc/floating-dock.html' %}
+    {% include 'inc/footer.html' %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/notification.js' %}"></script>
+
+    {% block extra-scripts %}{% endblock %}
+
+
+</body>
+</html>

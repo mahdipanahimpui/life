@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>چاپ لِس | سرویس آنلاین چاپ اختصاصی</title>
+{% endblock %}
+
+{% block content %}
+    <!-- محتوای اصلی --> 
+    <div class="content">
+        <div class="hero">
+            <h1>چاپ فاکتور، قبض، تراکت و سرنسخه اختصاصی</h1>
+            <p>سفارش آنلاین چاپ با کیفیت بالا و ارسال سریع و ظرفیت چاپ روزانه ۵۰۰،۰۰۰ برگ</p>
+
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-print"></i>
+                <h3>چاپ حرفه‌ای</h3>
+                <p>کیفیت بالا با انواع کاغذ و امکان چاپ رنگی و سیاه سفید با بهترین کیفیت ممکن</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-pen-fancy"></i>
+                <h3>سفارشی‌سازی کامل</h3>
+                <p>طراحی دلخواه با امکان شخصی‌سازی کاملاً اختصاصی</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>ارسال سریع</h3>
+                <p>ارسال رایگان در مناطق خاص و امکان ارسال به سراسر کشور با پیک موتوری و پست پیشتاز</p>
+            </div>
+        </div>
+        
+        <div class="cta-container">
+            <div class="cta-buttons">
+                <button class="cta-btn price-btn">لیست قیمت‌ها</button>
+                <button class="cta-btn primary-btn" id="start-order-btn">شروع سفارش</button>
+                <button class="cta-btn secondary-btn" id="gallery-btn">نمونه کارها</button>
+            </div>
+        </div>
+        
+
+        <div class="section" id="order-section">
+            <h2>سفارش خود را انتخاب کنید</h2>
+            <!-- بخش نوع سفارش با دکمه‌های زیبا -->
+            <div class="form-group full-width">
+                <div class="order-type-buttons">
+                    <div class="order-type-btn" data-value="{% url 'products:flyer_products' %}">
+                        <a href="{% url 'products:flyer_products' %}"><i class="fas fa-newspaper"></i></a>
+                        <div class="btn-title"><a href="{% url 'products:flyer_products' %}">تراکت</a></div>
+                        <div class="btn-description"><a href="{% url 'products:flyer_products' %}">چاپ تراکت با کیفیت بالا در اندازه‌های مختلف</a></div>
+
+                    </div>
+                    <div class="order-type-btn" data-value="{% url 'products:invoice_products' %}">
+                        <a href="{% url 'products:invoice_products' %}"><i class="fas fa-file-invoice"></i></a>
+                        <div class="btn-title"><a href="{% url 'products:invoice_products' %}">فاکتور و قبض</a></div>
+                        <div class="btn-description"><a href="{% url 'products:invoice_products' %}">چاپ فاکتور با قابلیت‌های شخصی‌سازی</a></div>
+
+                    </div>
+
+                    <div class="order-type-btn" data-value="{% url 'products:prescription_products' %}">
+                        <a href="{% url 'products:prescription_products' %}"><i class="fas fa-file-prescription"></i></a>
+                        <div class="btn-title"><a href="{% url 'products:prescription_products' %}">سرنسخه</a></div>
+                        <div class="btn-description"><a href="{% url 'products:prescription_products' %}">چاپ سرنسخه با سبک‌های مختلف</a></div>
+
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+      
+        
+        <div class="section" id="gallery-section">
+            <h2>گالری نمونه کارهای چاپ فاکتور</h2>
+            
+            <div class="gallery-container">
+                <!-- آیتم‌های گالری -->
+                <div class="gallery-item">
+                    <img src="/static/home/img/invoice_one_color.png" alt="فاکتور تحریر">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">فاکتور تحریر</div>
+                        <div class="gallery-item-desc">چاپ تک رنگ مشکی روی کاغذ تحریر ۸۰ گرم </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="/static/home/img/ghabz.jpeg" alt="قبض رسید">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">قبض/رسید</div>
+                        <div class="gallery-item-desc">چاپ باکیفیت به همراه پرفراژ و منگنه</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="/static/home/img/invoice_colorful.jpg" alt="فاکتور کاربن لس سه برگی">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">فاکتور کاربن لس سه برگی</div>
+                        <div class="gallery-item-desc">چاپ روی باکیفیت‌ترین نوع کاغذ NCR</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="/static/home/img/prescription.jpg" alt="سرنسخه">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">سرنسخه</div>
+                        <div class="gallery-item-desc">چاپ سرنسخه ویژه پزشکان، مربیان ورزشی، و ...</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="/static/home/img/flyer.png" alt="تراکت ریسوگراف">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">تراکت ریسوگراف</div>
+                        <div class="gallery-item-desc">چاپ تراکت تک رو و دورو</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="/static/home/img/invoice_ncr.jpg" alt="فاکتور کاربن لس دوبرگی">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">فاکتور کاربن لس دوبرگی</div>
+                        <div class="gallery-item-desc">چاپ فاکتور NCR با رنگ شماره‌گذاری دلخواه</div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <section class="about-section">
+            <h2 class="section-title">تاریخچه چاپ‌لِس</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>چاپ‌لِس در سال ۱۳۹۰ با هدف ارائه خدمات چاپ با کیفیت و سریع به کسب و کارهای ایرانی تأسیس شد. ما کار خود را با یک دستگاه چاپ کوچک آغاز کردیم و امروز با بهره‌گیری از پیشرفته‌ترین دستگاه‌های چاپ و یک تیم متخصص ۱۰ نفره، به یکی از پیشروهای صنعت چاپ کشور تبدیل شده‌ایم.</p>
+                    <p>طی این سال‌ها، ما به بیش از ۵۰۰۰ کسب و کار مختلف خدمات چاپ ارائه داده‌ایم و رضایت مشتریان همواره اولویت اصلی ما بوده است. افتخار می‌کنیم که در رشد و موفقیت کسب‌وکارهای ایرانی نقش داشته‌ایم.</p>
+                </div>
+                <div class="about-text">
+                    <p>امروز چاپ‌لِس امکان دسترسی به خدمات چاپ با کیفیت را برای همه فراهم کرده است. ما همواره در تلاش هستیم تا با بهره‌گیری از فناوری‌های روز و نوآوری در خدمات، تجربه بهتری برای مشتریان خود خلق کنیم.</p>
+                    <p>ماموریت ما تنها چاپ نیست، بلکه کمک به رشد و دیده شدن کسب و کارهای ایرانی با ابزارهای تبلیغاتی مؤثر و باکیفیت است.</p>
+                </div>
+            </div>
+    
+            <div class="mission-vision">
+                <div class="mission">
+                    <h3><i class="fas fa-bullseye"></i> ماموریت ما</h3>
+                    <p>ارائه خدمات چاپ با کیفیت برتر، قیمت رقابتی و تحویل به موقع با بهره‌گیری از فناوری‌های روز و نیروی انسانی متخصص، به گونه‌ای که مشتریان ما بتوانند با خیال راحت بر رشد کسب و کار خود تمرکز کنند.</p>
+                </div>
+                <div class="vision">
+                    <h3><i class="fas fa-eye"></i> چشم‌انداز ما</h3>
+                    <p>تبدیل شدن به برترين ارائه‌دهنده خدمات چاپ و تبلیغات در منطقه، با گسترش سرویس‌های نوین.</p>
+                </div>
+            </div>
+        </section>
+    
+        <section class="about-section">
+            <h2 class="section-title">چرا چاپ‌لِس؟</h2>
+            <div class="feature-cards ">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>کیفیت برتر</h3>
+                    <p>استفاده از بهترین مواد اولیه و پیشرفته‌ترین دستگاه‌های چاپ برای تضمین کیفیت نهایی محصولات</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>تحویل سریع</h3>
+                    <p>تحویل سفارشات در کوتاه‌ترین زمان ممکن با روش‌های ارسال متنوع</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>پشتیبانی </h3>
+                    <p>پشتیبانی همه‌روزه حتی در روزهای تعطیل برای پاسخگویی به سوالات و حل مشکلات مشتریان</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="modal" id="imageModal">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+{% endblock   %}
+
+
+
+{% block extra-scripts %}
+    <script src="{% static 'home/js/script.js' %}"></script>
+{% endblock %}
+
+
+

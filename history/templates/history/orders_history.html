@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+<link rel="stylesheet" href="{% static 'history/css/style.css' %}">
+
+{% endblock %}
+
+{% block title %}
+    <title>چاپ لِس | تاریخچه سفارشات</title>{% endblock %}
+{% block content %}
+
+
+<div class="content">
+    <a href="{% url 'home:home' %}" class="back-to-products">
+        <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+    </a>
+    
+    <div class="section">
+        <h2><i class="fas fa-history"></i> تاریخچه سفارشات ماه گذشته</h2>
+        
+        <div class="orders-list" id="orders-list">
+            {% for shopping_cart in shopping_carts %}
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-id">کد رهگیری سفارش: {{ shopping_cart.ref_code }}</div>
+                    <div class="order-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>تاریخ: {{ shopping_cart.paid_at }}</span>
+                    </div>
+                    <div class="order-status status">وضعیت: {{ shopping_cart.status }}</div>
+                </div>
+                
+                <div class="order-details">
+                    <div class="order-items">
+
+                    {% for product_order in shopping_cart.invoice_orders.all %}
+                        <div class="order-item">
+                            <div class="item-info">
+                                <div class="item-image">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                                <div>
+                                    <div class="item-name">{{ product_order.invoice_product.title }}</div>
+                                    <div class="item-meta">
+                                        <span>نوع: {{ product_order.invoice_product.invoice_type.type }}  -  </span>
+                                        <span>کاغذ: {{ product_order.invoice_product.paper_type.type }}  -  </span>
+                                        <span>ابعاد: {{ product_order.invoice_product.paper_size.size }}  -  </span>
+                                        <span>نوع رنگی: {{ product_order.invoice_product.color_mode.mode }}  -  </span>
+                                        <span>تیراژ: {{ product_order.invoice_product.circulation.circulation }}عدد</span>
+                                        <br>
+
+                                    {% if product_order.with_number %}
+                                        <span>شروع شماره از: {{ product_order.start_from }}  -  </span>
+                                        <span>رنگ شماره: {{ product_order.color.name }}  -  </span>
+                                        {% if product_order.numbering_location %}
+                                        <span>محل شماره گذاری: {{ product_order.numbering_location }}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span>بدون شماره</span>
+                                    {% endif %}
+                                        <br>
+                                        <span>نوع صحافی: {{ product_order.binding_type }}  -  </span>
+                                        <span>جهت صحافی: {{ product_order.binding_direction }}</span>
+                                    
+                                {% if product_order.additional_services.all %}
+                                        <br>
+                                        خدمات تکمیلی: 
+                                    {% for service in product_order.additional_services.all %}
+                                        <span>{{ service.service }}  -  </span>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if product_order.design_requirement %}
+                                        <br>
+                                        
+                                        <span>نیاز به طراحی</span>
+                                {% endif %}
+
+                                    {% if product_order.file %}
+                                        <br>
+                                        <span class="file-link"><a href="{{ product_order.file.path }}">فایل آپلود شده</a></span>
+                                    {% endif %}
+                                
+                                    {% if product_order.description %}
+                                        <br>
+                                        <span>توضیحات: {{ product_order.description }}</span>
+                                    {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-price">{{ product_order.total_price }}</div>
+                        </div>
+                    {% endfor %}
+
+                        <!-- سفارش تراکت‌ها -->
+                    {% for product_order in shopping_cart.flyer_orders.all %}
+                        <div class="order-item">
+                            <div class="item-info">
+                                <div class="item-image">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <div>
+                                    <div class="item-name">{{ product_order.flyer_product.title }}</div>
+                                    <div class="item-meta">
+                                        <span>نوع: {{ product_order.flyer_product.side.type }}  -  </span>
+                                        <span>کاغذ: {{ product_order.flyer_product.paper_type.type }}  -  </span>
+                                        <span>ابعاد: {{ product_order.flyer_product.paper_size.size }}  -  </span>
+                                        <span>نوع رنگی: {{ product_order.flyer_product.color_mode.mode }}  -  </span>
+                                        <span>تیراژ: {{ product_order.flyer_product.circulation.circulation }}عدد</span>
+
+                                        {% if product_order.additional_services.all %}
+                                        <br>
+                                        {% for service in product_order.additional_services.all %}
+                                        <span>{{ service.service }} - </span>
+                                        {% endfor %}
+                                        {% endif %}
+            
+                                        {% if product_order.design_requirement %}
+                                        <br>
+                                        <span>نیاز به طراحی</span>
+                                        {% endif %}
+            
+                                        {% if product_order.file_front %}
+                                        <br>
+                                            <span class="file-link"><a href="{{ product_order.file_front.path }}">فایل آپلود شده(روی طرح)</a></span> - 
+                                        {% endif %}
+                
+                                        {% if product_order.file_back %}
+                                            <span class="file-link"><a href="{{ product_order.file_back.path }}">فایل آپلود شده(پشت طرح)</a></span> - 
+                                        {% endif %}
+                                    
+                                        {% if product_order.description %}
+                                            <br>
+                                            <span>توضیحات: {{ product_order.description }}</span>
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-price">{{ product_order.total_price }}</div>
+                        </div>
+                    {% endfor %}
+
+                    <!-- سفارش سرنسخه‌ها -->
+                        {% for product_order in shopping_cart.prescription_orders.all %}
+                        <div class="order-item">
+                            <div class="item-info">
+                                <div class="item-image">
+                                    <i class="fas fa-file-prescription"></i>
+                                </div>
+                                <div>
+                                    <div class="item-name">{{ product_order.prescription_product.title }}</div>
+                                    <div class="item-meta">
+                                        <span>کاغذ: {{ product_order.prescription_product.paper_type.type }}  -  </span>
+                                        <span>ابعاد: {{ product_order.prescription_product.paper_size.size }}  -  </span>
+                                        <span>نوع رنگی: {{ product_order.prescription_product.color_mode.mode }}  -  </span>
+                                        <span>تیراژ: {{ product_order.prescription_product.circulation.circulation }}عدد</span>
+
+                                    {% if product_order.glue_attach %}
+                                        <br>
+                                        <span>نیاز به سرچب  -  </span>
+                                        <span>جهت سرچسب: {{ product_order.binding_direction }}</span>
+                                    {% else %}
+                                        <span>بدون سرچسب</span>
+                                    {% endif %}
+            
+                                    
+                                    {% if product_order.additional_services.all %}
+                                            <br>
+                                        {% for service in product_order.additional_services.all %}
+                                            <span>{{ service.service }}  -  </span>
+                                        {% endfor %}
+                                    {% endif %}
+                
+                                    {% if prescriptionorder.design_requirement %}
+                                            <br>
+                                            <span>نیاز به طراحی</span>
+                                    {% endif %}
+                
+                                        {% if product_order.file %}
+                                            <br>
+                                            <span class="file-link"><a href="{{ product_order.file.path }}">فایل آپلود شده</a></span>
+                                        {% endif %}
+                                    
+                                        {% if product_order.description %}
+                                            <br>
+                                            <span>توضیحات: {{ product_order.description }}</span>
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-price">{{ product_order.total_price }}</div>
+                        </div>
+                    {% endfor %}
+                        
+
+
+
+                    </div>
+                </div>
+                
+                <div class="order-footer">
+                    <div class="order-actions">
+                        <button class="delivery delivery-price">
+                            {{ shopping_cart.delivery_option.price }}
+                        </button>
+
+                    </div>
+                    <div class="order-total">{{ shopping_cart.paid_price }}</div>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+        
+        <!-- صفحه‌بندی -->
+        <div class="pagination" id="pagination">
+            <button class="pagination-btn" id="prev-btn" disabled>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div id="page-numbers" class="pagination-btns"></div>
+            <button class="pagination-btn" id="next-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra-scripts %}
+<script src="{% static 'history/js/script.js' %}"></script>
+
+{% endblock %}

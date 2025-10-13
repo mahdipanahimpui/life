@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{% static 'cart/css/delivery.css' %}">
+
+
+{% endblock %}
+
+{% block title %}
+    <title>چاپ لِس | پرداخت و ارسال</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <a href="{% url 'cart:shopping_cart' %}" class="back-to">
+        <i class="fas fa-arrow-right back-icon"></i> بازگشت به سبد خرید
+    </a>
+    <div class="section fade-in">
+        
+         <form class="address-form"  method="post" id="addressForm">
+            {% csrf_token %}
+            <div class="form-group full-width"> 
+                <h3 class="delivey-otpion-heading"><i class="fas fa-shipping-fast"></i> روش ارسال</h3>
+                <div class="options">
+                    <!-- <label class="option" id="tehranOption"> 
+                        <input type="radio" name="shippingMethod" value="tehran" data-price="117000">
+                        <div class="shipping-details">
+                            <div class="shipping-title">ارسال سریع به مناطق مرکزی و غربی تهران</div>
+                            <div class="shipping-description">تحویل در بازه ۲۴ تا ۴۸ ساعته</div>
+                        </div>
+                        <div class="shipping-price">117,000 تومان</div>
+                    </label>
+                    
+                    <label class="option" id="karajOption">
+                        <input type="radio" name="shippingMethod" value="karaj" data-price="70000">
+                        <div class="shipping-details">
+                            <div class="shipping-title">ارسال سریع به کرج فردیس</div>
+                            <div class="shipping-description">تحویل در بازه ۴۸ ساعته</div>
+                        </div>
+                        <div class="shipping-price">70,000 تومان</div>
+                    </label>
+                    
+                    <label class="option" id="postOption">
+                        <input type="radio" name="shippingMethod" value="post" data-price="130000" checked>
+                        <div class="shipping-details">
+                            <div class="shipping-title">ارسال پستی به سایر مناطق کشور</div>
+                            <div class="shipping-description">تحویل در بازه ۳ تا ۷ روز کاری</div>
+                        </div>
+                        <div class="shipping-price">130,000 تومان</div>
+                    </label> -->
+
+
+                {% for choice in form.shipping_method %}
+                    <label class="option" >
+                        {{ choice.tag }}
+                        <div class="shipping-details">
+                            <div class="shipping-title">{{ choice.choice_label.title }}</div>
+                            <div class="shipping-description">{{ choice.choice_label.description }}</div>
+                        </div>
+                        <div class="shipping-price">{{ choice.choice_label.price|floatformat:0 }} تومان</div>
+                    </label>
+                    <!-- cart/static/cart/css/style.css -->
+                {% endfor %}
+
+                    <!-- {% for choice in form.shipping_method %}
+                    {{ choice.code }}
+                    <label class="option {% if choice.code == 1 %}disabled-option{% endif %}">
+                        {% if choice.code == 1 %}
+                            <input type="radio" name="{{ choice.data.name }}" value="{{ choice.data.value }}" disabled>
+                        {% else %}
+                            {{ choice.tag }}
+                        {% endif %}
+                        <div class="shipping-details">
+                            <div class="shipping-title">{{ choice.title }}</div>
+                            <div class="shipping-description">{{ choice.description }}</div>
+                        </div>
+                        <div class="shipping-price">{{ choice.choice_label.price|floatformat:0 }} تومان</div>
+                    </label>
+                    {% endfor %} -->
+
+                <br>
+                <h3 class="delivey-otpion-heading"><i class="fa fa-credit-card"></i> روش پرداخت</h3>
+
+                <p style="
+                    background: var(--light);
+                    border: 1px solid var(--primary);
+                    border-radius: 6px;
+                    padding: 12px 16px;
+                    color: var(--dark);
+                    font-size: 14px;
+                    line-height: 1.5;">
+
+                    <strong>توجه:</strong> درگاه پرداخت آنلاین در حال حاضر در دسترس نیست. 
+                    لطفاً از روش <strong style="color: var(--primary-dark);">پرداخت کارت به کارت</strong> استفاده کنید.
+                </p>          
+                
+                
+                                    <!-- {% for choice in form.shipping_method %}
+                    {{ choice.code }}
+                    <label class="option {% if choice.code == 1 %}disabled-option{% endif %}">
+                        {% if choice.code == 1 %}
+                            <input type="radio" name="{{ choice.data.name }}" value="{{ choice.data.value }}" disabled>
+                        {% else %}
+                            {{ choice.tag }}
+                        {% endif %}
+                        <div class="shipping-details">
+                            <div class="shipping-title">{{ choice.title }}</div>
+                            <div class="shipping-description">{{ choice.description }}</div>
+                        </div>
+                        <div class="shipping-price">{{ choice.choice_label.price|floatformat:0 }} تومان</div>
+                    </label>
+                    {% endfor %} -->
+            
+            <div class="payment-options">
+                {% for choice in form.payment_method %}
+                    <label class="payment-option {% if choice.choice_label.code == 1 %}disabled-option{% else %}active-option{% endif %}">
+
+                        {% if choice.choice_label.code == 1 %}
+                            <input type="radio" name="{{ choice.data.name }}" value="{{ choice.data.value }}" disabled>
+                        {% else %}
+                            {{ choice.tag }}
+                        {% endif %}                        
+                        <div class="shipping-details">
+                            <div class="shipping-title">{{ choice.choice_label.title }}</div>
+                        </div>
+                    </label>
+                {% endfor %}
+            </div>
+
+                </div> 
+                <br>
+                <h3 class="delivey-otpion-heading"><i class="fa-address-card"></i>آدرس ثبت شده</h3>
+            </div> 
+
+            
+            
+            <div class="form-group">
+                <label for="name" class="required"><i class="fas fa-user"></i> نام ونام‌خانوادگی</label>
+                <input type="text" class="form-control" id="name" placeholder="{{ address.name }}" disabled>
+            </div>
+
+
+            <div class="form-group">
+                <label for="phone_number" class="required"><i class="fas fa-phone"></i> شماره تماس</label>
+                <input type="text" class="form-control" id="phone_number" placeholder="{{ address.phone_number }}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="required"><i class="fas fa-envelope"></i> ایمیل(اختیاری)</label>
+                <input type="email" class="form-control" id="email" placeholder="{{ address.email }}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="province" class="required"><i class="fas fa-map-marker-alt"></i>استان</label>
+                <input type="text" class="form-control" id="province" placeholder="{{ address.province }}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="city" class="required"><i class="fas fa-city"></i> شهر</label>
+                <input type="text" class="form-control" id="city" placeholder="{{ address.city }}" disabled>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="post_code" class="required"><i class="fas fa-map-pin"></i> کد پستی(داختیاری)</label>
+                <input type="text" class="form-control" id="post_code" placeholder="{{ address.post_code }}" disabled>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="complete_address" class="required"><i class="fas fa-home"></i> آدرس کامل</label>
+                <textarea class="form-control" id="complete_address" placeholder="{{ address.complete_address }}" disabled></textarea>
+            </div>
+            
+            
+            <div class="form-group full-width">
+                <div class="map-section">
+                    <div class="map-container">
+                        <div id="addressMap"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <div class="action-buttons full-width">
+                <button class="action-btn submit-btn" id="changeAddress" data-url="{% url 'addresses:address_manage' %}">
+                    تغییر آدرس
+                   <i class="fas fa-edit"></i>
+               </button>
+
+                <button type="submit" class="action-btn submit-btn" id="PaymentBtn">
+                     پرداخت
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+
+        </form> 
+
+            
+    </div>
+</div>
+
+{% endblock   %}
+
+
+
+{% block extra-scripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+
+        document.getElementById('changeAddress').addEventListener('click', function() {
+        window.location.href = this.dataset.url;
+        });
+
+
+        const lat = parseFloat("{{ address.lat|default:'35.6892' }}");
+        const lng = parseFloat("{{ address.lng|default:'51.3890' }}");
+        
+        const map = L.map('addressMap').setView([lat, lng], 15);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([lat, lng]).addTo(map).bindPopup('موقعیت آدرس شما').openPopup();
+        
+        // غیرفعال کردن کامل تعامل با نقشه
+        map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+    });
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

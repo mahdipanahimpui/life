@@ -1,0 +1,39 @@
+
+
+<!-- مودال اطلاعیه -->
+<div class="modal-overlay" id="notificationModal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h3 class="modal-title" id="notificationTitle">اطلاعیه</h3>
+            <button type="button" class="modal-close" aria-label="Close" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <p id="notificationMessage" class="mb-0"></p>
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" onclick="closeModal()">بستن</button> -->
+            <button type="button" class="btn btn-outline-primary" onclick="dismissNotification()">فعلا نمایش نده</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- در base.html قبل از بستن تگ body
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="notificationTitle">اطلاعیه</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="notificationMessage" class="mb-0"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-outline-primary" onclick="dismissNotification()">تا فردا نمایش نده</button>
+            </div>
+        </div>
+    </div>
+</div> -->

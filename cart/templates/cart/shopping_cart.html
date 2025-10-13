@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+<link rel="stylesheet" href="{% static 'cart/css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>چاپ لِس | سبد خرید</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <a href="{% url 'home:home' %}" class="back-to">
+        <i class="fas fa-arrow-right back-icon"></i> بازگشت به صفحه اصلی
+    </a>
+    
+    <div class="section">
+        <h2>سبد خرید شما</h2>
+        
+        <div class="cart-items">
+
+            {% for invoice_order in invoice_orders.all %}
+
+            <!-- محصول اول -->
+                <div class="cart-item">
+                    <!-- دکمه حذف اضافه شده -->
+                    <button class="remove-btn remove-order" data-url="{% url 'orders:invoice_order_delete' invoice_order.id %}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="cart-item-image">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">{{ invoice_order.invoice_product.title }}</h3>
+                        <div class="cart-item-meta">
+                            <span>نوع: {{ invoice_order.invoice_product.invoice_type.type }}</span>
+                            <span>کاغذ: {{ invoice_order.invoice_product.paper_type.type }}</span>
+
+                            <span>ابعاد: {{ invoice_order.invoice_product.paper_size.size }}</span>
+                            <span>نوع رنگی: {{ invoice_order.invoice_product.color_mode.mode }}</span>
+                            <span>تیراژ: {{ invoice_order.invoice_product.circulation.circulation }} عدد</span>
+                            <br>
+                        {% if invoice_order.with_number %}
+                            <span>شروع شماره از: {{ invoice_order.start_from }}</span>
+                            <span>رنگ شماره: {{ invoice_order.color.name }}</span>
+                            {% if invoice_order.numbering_location %}
+                            <span>محل شماره گذاری: {{ invoice_order.numbering_location }}</span>
+                            {% endif %}
+
+                        {% else %}
+                            <span>بدون شماره</span>
+                        {% endif %}
+                            <br>
+                            <span>نوع صحافی: {{ invoice_order.binding_type }}</span>
+                            <span>جهت صحافی: {{ invoice_order.binding_direction }}</span>
+                        
+                    {% if invoice_order.additional_services.all %}
+                            <br>
+                            خدمات تکمیلی: 
+                        {% for service in invoice_order.additional_services.all %}
+                            <span>{{ service.service }}</span>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if invoice_order.design_requirement %}
+                            <br>
+                            
+                            <span>نیاز به طراحی</span>
+                    {% endif %}
+
+                        {% if invoice_order.file %}
+                        <hr>
+                            <span class="file-link"><a href="{{ invoice_order.file.path }}">فایل آپلود شده</a></span>
+                        {% endif %}
+                    
+                        {% if invoice_order.description %}
+                            <br>
+                            <span>توضیحات: {{ invoice_order.description }}</span>
+                        {% endif %}
+
+                        </div>
+
+                        <div class="cart-item-footer">
+                            <div class="cart-item-status">وضعیت: {{ invoice_order.status }}</div>
+                            <div class="cart-item-price">{{ invoice_order.total_price }} تومان</div>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+
+
+            {% for flyer_order in flyer_orders.all %}
+
+            <!-- محصول اول -->
+                <div class="cart-item">
+                    <!-- دکمه حذف اضافه شده -->
+                    <button class="remove-btn remove-order" data-url="{% url 'orders:flyer_order_delete' flyer_order.id %}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="cart-item-image">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">{{ flyer_order.flyer_product.title }}</h3>
+                        <div class="cart-item-meta">
+                            <span>نوع: {{ flyer_order.flyer_product.side.type }}</span>
+                            <span>کاغذ: {{ flyer_order.flyer_product.paper_type.type }}</span>
+                            <span>ابعاد: {{ flyer_order.flyer_product.paper_size.size }}</span>
+                            <span>ابعاد: {{ flyer_order.flyer_product.color_mode.mode }}</span>
+                            <span>تیراژ: {{ flyer_order.flyer_product.circulation.circulation }}عدد</span>
+                        
+                    {% if flyer_order.additional_services.all %}
+                            <br>
+                        {% for service in flyer_order.additional_services.all %}
+                            <span>{{ service.service }}</span>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if flyer_order.design_requirement %}
+                            <br>
+                            <span>نیاز به طراحی</span>
+                    {% endif %}
+
+                        {% if flyer_order.file_front %}
+                        <hr>
+                            <span class="file-link"><a href="{{ flyer_order.file_front.path }}">فایل آپلود شده(روی طرح)</a></span>
+                        {% endif %}
+
+                        {% if flyer_order.file_back %}
+                            <span class="file-link"><a href="{{ flyer_order.file_back.path }}">فایل آپلود شده(پشت طرح)</a></span>
+                        {% endif %}
+                    
+                        {% if flyer_order.description %}
+                            <br>
+                            <span>توضیحات: {{ flyer_order.description }}</span>
+                        {% endif %}
+
+                        </div>
+
+                        <div class="cart-item-footer">
+                            <div class="cart-item-status">وضعیت: {{ flyer_order.status }}</div>
+                            <div class="cart-item-price">{{ flyer_order.total_price }} تومان</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% for prescription_order in prescription_orders.all %}
+
+            <!-- محصول اول -->
+                <div class="cart-item">
+                    <!-- دکمه حذف اضافه شده -->
+                    <button class="remove-btn remove-order" data-url="{% url 'orders:prescription_order_delete' prescription_order.id %}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="cart-item-image">
+                        <i class="fas fa-file-prescription"></i>
+                    </div>
+                    
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">{{ prescription_order.prescription_product.title }}</h3>
+                        <div class="cart-item-meta">
+                            <span>کاغذ: {{ prescription_order.prescription_product.paper_type.type }}</span>
+                            <span>ابعاد: {{ prescription_order.prescription_product.paper_size.size }}</span>
+                            <span>نوع رنگی: {{ prescription_order.prescription_product.color_mode.mode }}</span>
+                            <span>تیراژ: {{ prescription_order.prescription_product.circulation.circulation }}</span>
+                        {% if prescription_order.glue_attach %}
+                            <br>
+                            <span>نیاز به سرچب</span>
+                            <span>جهت سرچسب: {{ prescription_order.binding_direction }}</span>
+                        {% else %}
+                            <span>بدون سرچسب</span>
+                        {% endif %}
+
+                        
+                    {% if prescription_order.additional_services.all %}
+                            <br>
+                        {% for service in prescription_order.additional_services.all %}
+                            <span>{{ service.service }}</span>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if prescriptionorder.design_requirement %}
+                            <br>
+                            <span>نیاز به طراحی</span>
+                    {% endif %}
+
+                        {% if prescription_order.file %}
+                        <hr>
+                            <span class="file-link"><a href="{{ prescription_order.file.path }}">فایل آپلود شده</a></span>
+                        {% endif %}
+                    
+                        {% if prescription_order.description %}
+                            <br>
+                            <span>توضیحات: {{ prescription_order.description }}</span>
+                        {% endif %}
+
+                        </div>
+
+                        <div class="cart-item-footer">
+                            <div class="cart-item-status">وضعیت: {{ prescription_order.status }}</div>
+                            <div class="cart-item-price">{{ prescription_order.total_price }} تومان</div>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+            
+
+        </div>
+        
+        <div class="order-summary">
+
+            <div class="summary-item summary-total">
+                <span>جمع کل: </span>
+                <span id="total"></span>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn continue-shopping" id="continueShopping" data-url="{% url 'home:home' %}">
+                <i class="fas fa-plus-circle"></i> <a href="{% url 'home:home' %}">افزودن سفارش دیگر</a>
+            </button>
+            <button class="action-btn checkout-btn" id="checkout" data-url="{% url 'cart:delivery' %}">
+                <a href="{% url 'cart:delivery' %}">پرداخت و ارسال</a>
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock   %}
+
+
+
+{% block extra-scripts %}
+<script src="{% static 'cart/js/script.js' %}"></script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

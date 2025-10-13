@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-headers %}
+    <link rel="stylesheet" href="{% static 'cart/css/card_to_card.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+{% endblock %}
+
+
+{% block title %}
+    <title>چاپ لِس | کارت به کارت</title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="payment-container">
+    <div class="payment-card">
+        <div class="card-header">
+            <h4>
+                <i class="bi bi-credit-card-2-front"></i>
+                ثبت اطلاعات پرداخت کارت به کارت
+            </h4>
+        </div>
+
+        <!-- <div class="">
+            مبلغ سفارش را به شماره کارت 4050-6784-1060-4050 به نام (مهدی مرادی) واریز نمایید.
+        </div> -->
+        <div class="payment-info">
+            مبلغ سفارش را به شماره کارت 
+            <span class="card-number">5047-0610-6784-4692</span> 
+            <br>
+            به نام 
+            <span class="account-holder">مهدی پناهی</span> 
+            واریز نمایید.
+        </div>
+        
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="form-group input-icon">
+                    <label for="id_card_number" class="form-label">
+                        <i class="bi bi-credit-card"></i>
+                        شماره کارت پرداخت کننده
+                    </label>
+                    {{ form.card_number }}
+                    {% if form.card_number.errors %}
+                        <div class="error-message">
+                            <i class="bi bi-exclamation-circle"></i>
+                            {{ form.card_number.errors }}
+                        </div>
+                    {% endif %}
+                    <div class="form-text">
+                        <i class="bi bi-info-circle"></i>
+                        شماره کارت ۱۶ رقمی خود را وارد کنید.
+                    </div>
+                </div>
+
+                <div class="form-group input-icon">
+                    <label for="id_tracking_code" class="form-label">
+                        <i class="bi bi-receipt"></i>
+                        کد پیگیری پرداخت
+                    </label>
+                    {{ form.tracking_code }}
+                    {% if form.tracking_code.errors %}
+                        <div class="error-message">
+                            <i class="bi bi-exclamation-circle"></i>
+                            {{ form.tracking_code.errors }}
+                        </div>
+                    {% endif %}
+                    <div class="form-text ref-code">
+                        <i class="bi bi-info-circle"></i>
+                        کد مرجع، ارجاع یا کد پیگیری 
+                        <a href="/static/cart/img/ref_codes.jpg" class="instance-ref-cdoe" target="_blank">مشاهده نمونه کد مرجع</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn-submit">
+                        <i class="bi bi-check-lg"></i>
+                        ثبت اطلاعات
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="{% url 'cart:delivery' %}" class="back-link">
+            <i class="bi bi-arrow-right"></i>
+            بازگشت به صفحه قبل
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra-scripts %}
+
+<script>
+    // فرمت خودکار شماره کارت
+    document.getElementById('id_card_number').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/-/g, '');
+        if (value.length > 0) {
+            value = value.match(new RegExp('.{1,4}', 'g')).join('-');
+        }
+        e.target.value = value;
+    });
+
+    // افزودن انیمیشن هنگام ارسال فرم
+    document.querySelector('form').addEventListener('submit', function() {
+        const submitBtn = document.querySelector('.btn-submit');
+        submitBtn.classList.add('loading');
+        submitBtn.innerHTML = '<i class="bi bi-arrow-repeat me-2"></i>در حال ثبت...';
+    });
+
+    // افزودن افکت focus به فیلدها
+    const inputs = document.querySelectorAll('.form-control');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+    });
+</script>
+
+{% endblock %}

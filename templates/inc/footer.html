@@ -1,0 +1,84 @@
+    <!-- فوتر -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-logo"><a href="{% url 'home:home' %}">چاپ لِس</a></h3>
+                <p class="footer-description">
+                    ارائه بهترین خدمات چاپ با کیفیت عالی و قیمت مناسب برای کسب‌وکارهای ایرانی
+                </p>
+                <div class="social-links">
+
+                    <!-- <a href="#" class="social-link" style="display: none;"><i class="fab fa-instagram"></i></a> -->
+
+                    <a href="https://t.me/ChapLes_ir" class="social-link">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAe1BMVEX////6/f643vZ8xvFItO0kq+t0wvCv2vXz+f2SzvEDpeczruoyq+fX7PrC4vai0/IhpuQxqubq9fwwquVMseZmuuoAn96Bxewtp+Li8fp3vOOYy+mHxOgqo9xuuuUAltooodoAmdUkndVGp9gln9dgsNwAlNCRxuQzodURH7loAAABCklEQVR4AayRVQKEIBRFsRO7u3X/Kxx4z/Z3jnXhSJM/IIiSrCiyqulfZZiKYjFsxZRemqJBFNO5O8e0H5ju5ejhLiue43n+BzPYpeGFF77nRazsxUfDS3lJJAokzcIwyUGKXrbjeSlUpTwbIItdJZEmEMJuEvNiBDKCRklB4c+SvfBfkB6Prs6jk1R8EglIqEnqGrvQm7bkX5rUDJQsdJFLdTFJNJwhSshNx2zCQUfKjv9fQ9aSGukalA3ICofquxM4Dkg9xT+L4ZR9I+w/j+hYaToZ+nIe2Heh53EuaFBz15fkpFxY3cXUF+SGuNzlUpIHwbz0hxopeZOv48LYKvobjrTLwUF8OgcAV58l6Nc1eEoAAAAASUVORK5CYII="
+                        alt="Telegram" style="width: 24px; height: 24px;">
+                    </a>
+
+                    <a href="https://wa.me/989205969079?text=سلام%0Aدرخواست%20مشاوره%20در%20زمینه%20خدمات%20چاپ%20دارم" class="social-link">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAUVBMVEVHcEzz9PP3+Pfq7er19vb//v/8/PyltKrx+PKz5b1z04cwxlYMwUMAvCkAvjMAvzoDwUBGTUiH2JiY3aXX8Nxcznbo6ulJymfQ1NHJzcq9wr8gaKU6AAAAG3RSTlMAOlmJ2f//Lvj+/v///////xX+/v7+rP56aF7BK/qjAAABgklEQVR4AX2Sh5qEMAiEbYyJqXa993/QAza5z2v7b8UMMKDNN9qu77u2+Yd+oMLQ/3UMeoCfktHIVTs5791kRWvGb73BV6YQU2ZSDJPo28c5hzYk/0UKlghfipnzl+C/ERZWVMHA59H7nL8pVp6mUTqp7310Ln1TbESdCtgQJ0fO2J+KnNl4cbhGnx0b3aJ/EO1rkoPIZZ9WAuCeNhLnHGrRBJUDtH53YdQmyEaWL1Lh+yCSxEsoeQn4btJr27kZQYtclym279uSqqMI1lTntqpI6VlhVg9M9gArsg92Cal6mHlPdfx8Emg75S6YV9dNN3WAaskTsi0Zh6bEMUH2cLHLqvDsA4LsTjzeerNhqvscJpYwa5Q9gS0w/XODKbjF2jPK3PXJrIMWcooxiyGSAkKvHX+QHICPRhnYQ0mr5LADpYFuShunWIeJ2VI5Z25gM8TA7jFEfu9Whr2awoEKi8ymYmAYm4oBh8fHfA8vESRme5URxz0XN9cxMMelcYWDt3wCfLshX3540l4AAAAASUVORK5CYII="
+                        alt="Whatsapp" style="width: 24px; height: 24px;">
+                    </a>
+
+
+                    <a href="https://eitaa.com/Chaples_ir" class="social-link">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAMAAACnDzTfAAAATlBMVEVHcEzvfxrvfxrvfxnvfxrvfxrvfxrvfxrvfxnvfxr////vegHudgDucgDvfRHwhSn86Nz1sIH2vJb50bj++PPxjj773cv98Oj3xaTznF0U+Sv7AAAACnRSTlMAAgH/s8qdM/HmEfge4AAAAUhJREFUKJFVklkWwjAIRaPpZCDzULv/jQoh0cqHx+bymJUi27eXvttr29Ww9fcKiAj8ZxH01TjUMeccgemLyHOZCGszYhFFuU9k3+ZrkZW72qYqmJvxyzaz/SOTSLiqEVBSlZZbd2qU8RAGiR9ytdSC1fnOnGdNtW4ECeZNMX1nSJ4FfAJp0xZzucG6zNvQSOjA1tMES4JLjWwJgX481Mi1VKdtMmrU7zT+OriAJ3F2ZsxpR60dIaMGStLdWKZRYzLNci2ucilOYrZKnWFk514nl3lq9igX92gj+wrrikuTA2/O8UJ4Eces0ySahuORXfSVqT9hUgXWaMMZCofm3RLjHQGzgHZ24ftg175biH1B8RRUZa6b3MT9HooXRDchF4hxooxjU3yFz6Nv16VQSnh7nPfb7/Oxfs8WYYioELHHvhz/N7/0m/8AaUEaOk07uDAAAAAASUVORK5CYII="
+                        alt="Eitaa" style="width: 24px; height: 24px;">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">لینک‌های سریع</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home:home' %}"><i class="fas fa-chevron-left"></i> خانه</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> درباره ما</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> تماس با ما</a></li>
+                    <!-- <li><a href="#"><i class="fas fa-chevron-left"></i> وبلاگ</a></li> -->
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">خدمات ما</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'products:invoice_products' %}"><i class="fas fa-chevron-left"></i> چاپ فاکتور </a></li>
+                    <li><a href="{% url 'products:flyer_products' %}"><i class="fas fa-chevron-left"></i> چاپ  تراکت</a></li>
+                    <li><a href="{% url 'products:prescription_products' %}"><i class="fas fa-chevron-left"></i> چاپ سرنسخه </a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> مشاوره رایگان</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">تماس با ما</h4>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+
+                        <span>۰۷۹ ۶۹ ۵۹ ۰۹۲۰</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@chap-faktor.ir</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>تهران، ظهیرالاسلام | کرج، محمدشهر</span>
+
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>شنبه تا پنجشنبه: ۸:۰۰ - ۱۷:۰۰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; چاپ‌لِس ۱۴۰۴. تمام حقوق محفوظ است.</p>
+                <div class="footer-bottom-links">
+                    <a href="{% url 'extra:terms' %}">قوانین و مقررات</a>
+                </div>
+            </div>
+        </div>
+    </footer>

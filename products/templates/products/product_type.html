@@ -1,0 +1,17 @@
+<div class="btn-group full-width">
+    <div class="product-type-buttons">
+        <div class="product-type-btn {% if product_type == 'flyer' %}active{% endif %}" data-value="flyer" data-url="{% url 'products:flyer_products' %}">
+            <i class="fas fa-newspaper"></i>
+            <div class="btn-title"><a href="{% url 'products:flyer_products' %}">تراکت</a></div>
+        </div>
+        <div class="product-type-btn {% if product_type == 'invoice' %}active{% endif %}" data-value="invoice" data-url="{% url 'products:invoice_products' %}">
+            <i class="fas fa-file-invoice"></i>
+            <div class="btn-title"><a href="{% url 'products:invoice_products' %}">فاکتور و قبض</a></div>
+        </div>
+
+        <div class="product-type-btn {% if product_type == 'prescription' %}active{% endif %}" data-value="prescription" data-url="{% url 'products:prescription_products' %}">
+            <i class="fas fa-file-prescription"></i>
+            <div class="btn-title"><a href="{% url 'products:prescription_products' %}">سرنسخه</a></div>
+        </div>
+    </div>
+</div>

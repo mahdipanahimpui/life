@@ -1,0 +1,821 @@
+/* Reset و استایل‌های پایه */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Vazir, Tahoma, sans-serif;
+}
+
+:root {
+    --primary: #4a6cf7;
+    --primary-dark: #2f4fdf;
+    --secondary: #28a745;
+    --accent: #ff6b6b;
+    --light: #f8f9fa;
+    --dark: #333;
+    --gray: #6c757d;
+    --border: #e0e0e0;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+}
+
+body {
+    padding-top: 80px;
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+}
+.invalid-feedback {
+    position: relative;
+    z-index: 1000;
+}
+
+.form-control.is-invalid {
+    position: relative;
+    z-index: 1000;
+}
+
+/* اسکرول اتوماتیک */
+html {
+    scroll-padding-top: 100px; /* فاصله از بالای صفحه */
+}
+
+
+/* استایل منوبار */
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4a6cf7;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    position: relative;
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a i {
+    margin-left: 8px;
+}
+
+.nav-links a:hover {
+    color: #4a6cf7;
+}
+
+.nav-links a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4a6cf7;
+    border-radius: 3px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.contact-info {
+    display: flex;
+    align-items: right;
+    margin-left: 40px;
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.contact-info i {
+    margin-left: 8px;
+    color: #4a6cf7;
+    font-size: 18px;
+}
+
+
+
+
+.auth-buttons {
+    display: flex;
+    margin-left: 20px;
+}
+
+.login-signup-btn {
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.login-signup-btn {
+    border: 1px solid #4a6cf7;
+    color: #4a6cf7;
+    background: transparent;
+}
+
+.login-signup-btn:hover {
+    background-color: #4a6cf7;
+    color: #fff;
+}
+
+
+
+.cart-icon {
+    position: relative;
+    margin-left: 20px;
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+    color: #4a6cf7;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 2px 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-logout {
+    display: none;
+}
+
+
+
+/* استایل فوتر */
+.footer {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    color: white;
+    padding: 10px 0 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.footer-section {
+    padding: 10px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4a6cf7 0%, #667eea 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    color: #cbd5e0;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    background: linear-gradient(135deg, #4a6cf7 0%, #667eea 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(74, 108, 247, 0.4);
+}
+
+.footer-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: white;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(135deg, #4a6cf7 0%, #667eea 100%);
+    border-radius: 2px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 5px;
+}
+
+.footer-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: #4a6cf7;
+    transform: translateX(-5px);
+}
+
+.footer-links i {
+    margin-left: 8px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover i {
+    transform: translateX(-3px);
+}
+
+.nav-actions .contact-info {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.footer-section .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    color: #cbd5e0;
+    font-size: 15px;
+}
+
+.contact-item i {
+    margin-left: 12px;
+    color: #4a6cf7;
+    font-size: 18px;
+    width: 20px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 5%;
+}
+
+.footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-bottom-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: #4a6cf7;
+}
+
+.back-to {
+    display: inline-flex; 
+    align-items: center; 
+    margin-bottom: 25px; 
+    color: var(--primary); 
+    text-decoration: none; 
+    font-weight: 700; 
+    transition: all 0.3s ease; 
+    padding: 10px 20px; 
+    background: #fff; 
+    border-radius: 10px; 
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+}
+
+.back-to:hover {
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+
+.back-icon {
+    padding: 5px;
+}
+
+
+/* دکمه‌های شناور برای موبایل و تبلت */
+.floating-buttons {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.floating-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    flex: 1;
+    min-width: 60px;
+    position: relative;
+}
+
+.floating-btn i {
+    font-size: 20px;
+    margin-bottom: 5px;
+    background: #4a6cf7;
+    color: white;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.floating-btn.active i {
+    background: #3a5cd8;
+}
+
+.floating-btn:hover i {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(74, 108, 247, 0.4);
+}
+
+/* استایل برای نمایش شماره محصولات در دکمه شناور */
+.floating-cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transform: translate(25%, -25%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+
+.messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeaa7;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.close-btn {
+    float: left;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* استایل‌های مودال */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-dialog {
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--light);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+    margin-bottom: 400px;
+}
+
+.modal-overlay.active .modal-dialog {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 15px 20px;
+    background-color: var(--primary-dark);
+    color: var(--light);
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: inherit !important;
+}
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #eee;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray);
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary-dark);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+
+/* رسپانسیو برای تبلت */
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        flex-direction: column;
+        background-color: #fff;
+        width: 250px;
+        height: calc(100vh - 80px);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        padding-top: 20px;
+    }
+
+    .nav-links.active {
+        display: block;
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+        padding: 0 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-logout {
+        display: block;
+    }
+
+    .contact-info {
+        display: none;
+    }
+
+    .auth-buttons {
+        display: none;
+    }
+
+
+    
+    /* بهبود دکمه‌های شناور در تبلت */
+    .floating-buttons {
+        display: flex;
+        padding: 12px 10px;
+    }
+    
+    .floating-btn {
+        font-size: 11px;
+        min-width: 50px;
+    }
+    
+    .floating-btn i {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    /* اضافه کردن فضای بیشتر در پایین برای دکمه‌های شناور */
+    body {
+        padding-bottom: 75px;
+    }
+        .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+    }
+
+    .footer-section {
+        padding: 10px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-title::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom-links {
+        justify-content: center;
+    }
+}
+
+/* رسپانسیو برای موبایل */
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .auth-buttons {
+        display: none;
+    }
+
+    .cart-icon {
+        display: none; 
+    }
+    
+    /* نمایش دکمه‌های شناور در موبایل */
+    .floating-buttons {
+        display: flex;
+    }
+    
+    /* اضافه کردن فضای بیشتر در پایین برای دکمه‌های شناور */
+    body {
+        padding-bottom: 80px;
+    }
+    
+        .footer {
+        padding: 10px 0 0;
+    }
+
+    .footer-content {
+        padding: 0 20px;
+    }
+
+    .footer-logo {
+        font-size: 24px;
+    }
+
+    .footer-title {
+        font-size: 18px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .contact-item {
+        font-size: 14px;
+    }
+}
+
+/* بهبود برای تبلت‌های با اندازه متوسط */
+@media (min-width: 576) and (max-width: 992px) {
+    .cart-icon {
+        display: none; /* حذف آیکون سبد خرید از منوبار در تبلت */
+    }
+    
+    .floating-buttons {
+        padding: 15px 20px;
+    }
+    
+    .floating-btn {
+        font-size: 12px;
+        min-width: 65px;
+    }
+    
+    .floating-btn i {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+}
