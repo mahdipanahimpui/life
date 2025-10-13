@@ -4,7 +4,6 @@ charset-normalizer==3.4.3
 Django==5.2.6
 django-filter==25.1
 django-tracking2==0.5.1
-DjangoSEO==1.0
 idna==3.10
 kavenegar==1.1.2
 python-slugify==8.0.4
