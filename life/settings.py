@@ -176,3 +176,6 @@ LOGIN_URL = '/accounts/register/'  # آدرس پیش‌فرض صفحه لاگی�
 LOGIN_REDIRECT_URL = 'next'        # آدرس پیش‌فرض پس از لاگین موفق
 LOGOUT_REDIRECT_URL = '/'       # آدرس پیش‌فرض پس از لاگ اوت
 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
