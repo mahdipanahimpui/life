@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         
         if (currentProducts.length === 0) {
-            productsGrid.innerHTML = '<p class="full-width">هیچ محصولی برای فیلترهای انتخاب شده یافت نشد.</p>';
+            productsGrid.innerHTML = '<p class="full-width">در صورت یافت نشدن محصول با فیلترهای درخواستی برای سفارش با پشتیبانی تماس بگیرید.</p>';
             paginationContainer.style.display = 'none';
             return;
         }
