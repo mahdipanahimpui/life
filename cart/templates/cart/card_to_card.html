@@ -23,11 +23,12 @@
             </h4>
         </div>
 
-        <!-- <div class="">
-            مبلغ سفارش را به شماره کارت 4050-6784-1060-4050 به نام (مهدی مرادی) واریز نمایید.
-        </div> -->
         <div class="payment-info">
-            مبلغ سفارش را به شماره کارت 
+            مبلغ 
+            <br>
+            <span class="account-holder" id="total_price">{{ total_price }}</span> 
+            <br>
+            بدون احتساب خدمات تکمیلی را به شماره کارت
             <span class="card-number">5047-0610-6784-4692</span> 
             <br>
             به نام 
@@ -128,6 +129,14 @@
             }
         });
     });
+
+
+    const total_price = document.getElementById('total_price');
+    const price = parseFloat(total_price.textContent) || 0;
+    total_price.textContent = price.toLocaleString() + ' تومان';
+
+    
+
 </script>
 
 {% endblock %}

@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block extra-headers %}
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="{% static 'cart/css/delivery.css' %}">
 
@@ -26,33 +25,7 @@
             <div class="form-group full-width"> 
                 <h3 class="delivey-otpion-heading"><i class="fas fa-shipping-fast"></i> روش ارسال</h3>
                 <div class="options">
-                    <!-- <label class="option" id="tehranOption"> 
-                        <input type="radio" name="shippingMethod" value="tehran" data-price="117000">
-                        <div class="shipping-details">
-                            <div class="shipping-title">ارسال سریع به مناطق مرکزی و غربی تهران</div>
-                            <div class="shipping-description">تحویل در بازه ۲۴ تا ۴۸ ساعته</div>
-                        </div>
-                        <div class="shipping-price">117,000 تومان</div>
-                    </label>
-                    
-                    <label class="option" id="karajOption">
-                        <input type="radio" name="shippingMethod" value="karaj" data-price="70000">
-                        <div class="shipping-details">
-                            <div class="shipping-title">ارسال سریع به کرج فردیس</div>
-                            <div class="shipping-description">تحویل در بازه ۴۸ ساعته</div>
-                        </div>
-                        <div class="shipping-price">70,000 تومان</div>
-                    </label>
-                    
-                    <label class="option" id="postOption">
-                        <input type="radio" name="shippingMethod" value="post" data-price="130000" checked>
-                        <div class="shipping-details">
-                            <div class="shipping-title">ارسال پستی به سایر مناطق کشور</div>
-                            <div class="shipping-description">تحویل در بازه ۳ تا ۷ روز کاری</div>
-                        </div>
-                        <div class="shipping-price">130,000 تومان</div>
-                    </label> -->
-
+                   
 
                 {% for choice in form.shipping_method %}
                     <label class="option" >
@@ -63,24 +36,7 @@
                         </div>
                         <div class="shipping-price">{{ choice.choice_label.price|floatformat:0 }} تومان</div>
                     </label>
-                    <!-- cart/static/cart/css/style.css -->
                 {% endfor %}
-
-                    <!-- {% for choice in form.shipping_method %}
-                    {{ choice.code }}
-                    <label class="option {% if choice.code == 1 %}disabled-option{% endif %}">
-                        {% if choice.code == 1 %}
-                            <input type="radio" name="{{ choice.data.name }}" value="{{ choice.data.value }}" disabled>
-                        {% else %}
-                            {{ choice.tag }}
-                        {% endif %}
-                        <div class="shipping-details">
-                            <div class="shipping-title">{{ choice.title }}</div>
-                            <div class="shipping-description">{{ choice.description }}</div>
-                        </div>
-                        <div class="shipping-price">{{ choice.choice_label.price|floatformat:0 }} تومان</div>
-                    </label>
-                    {% endfor %} -->
 
                 <br>
                 <h3 class="delivey-otpion-heading"><i class="fa fa-credit-card"></i> روش پرداخت</h3>
@@ -97,23 +53,6 @@
                     <strong>توجه:</strong> درگاه پرداخت آنلاین در حال حاضر در دسترس نیست. 
                     لطفاً از روش <strong style="color: var(--primary-dark);">پرداخت کارت به کارت</strong> استفاده کنید.
                 </p>          
-                
-                
-                                    <!-- {% for choice in form.shipping_method %}
-                    {{ choice.code }}
-                    <label class="option {% if choice.code == 1 %}disabled-option{% endif %}">
-                        {% if choice.code == 1 %}
-                            <input type="radio" name="{{ choice.data.name }}" value="{{ choice.data.value }}" disabled>
-                        {% else %}
-                            {{ choice.tag }}
-                        {% endif %}
-                        <div class="shipping-details">
-                            <div class="shipping-title">{{ choice.title }}</div>
-                            <div class="shipping-description">{{ choice.description }}</div>
-                        </div>
-                        <div class="shipping-price">{{ choice.choice_label.price|floatformat:0 }} تومان</div>
-                    </label>
-                    {% endfor %} -->
             
             <div class="payment-options">
                 {% for choice in form.payment_method %}
@@ -131,7 +70,9 @@
                 {% endfor %}
             </div>
 
-                </div> 
+
+
+            </div> 
                 <br>
                 <h3 class="delivey-otpion-heading"><i class="fa-address-card"></i>آدرس ثبت شده</h3>
             </div> 
@@ -192,7 +133,7 @@
                    <i class="fas fa-edit"></i>
                </button>
 
-                <button type="submit" class="action-btn submit-btn" id="PaymentBtn">
+                <button type="submit" class="action-btn submit-btn" id="PaymentBtn" data-url="{% url 'cart:card_to_card' %}">
                      پرداخت
                     <i class="fas fa-arrow-left"></i>
                 </button>
@@ -213,6 +154,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
+
+        document.getElementById('changeAddress').addEventListener('click', function() {
+        window.location.href = this.dataset.url;
+        });
 
         document.getElementById('changeAddress').addEventListener('click', function() {
         window.location.href = this.dataset.url;

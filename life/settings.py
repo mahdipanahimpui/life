@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-agy_w&^h_3%a)b0m8%7h=(c0@8cw#_hc0*4q2nydi=24pz5!zm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'local', 'www.chaples.ir', 'chaples.ir', '37.32.26.242']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'local', 'www.chaples.ir', 'chaples.ir', '37.32.26.242']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -179,3 +180,9 @@ LOGOUT_REDIRECT_URL = '/'       # آدرس پیش‌فرض پس از لاگ او
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # اندازه به بایت (برای 100MB)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # اندازه به بایت (برای 100MB)

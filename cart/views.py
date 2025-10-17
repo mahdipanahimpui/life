@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
@@ -8,6 +8,7 @@ from django.views.generic import FormView
 from addresses.models import Address
 from .forms import DeliveryPaymentSelectionForm, CardToCardPaymentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 
@@ -75,7 +76,8 @@ class DeliveryPaymentView(LoginRequiredMixin, View):
     
     def get(self, request, *args, **kwargs):
         address = Address.objects.filter(user=request.user).first()
-        
+
+
         if not address:
             return redirect('addresses:address_manage')
         
@@ -133,6 +135,28 @@ class CardToCardView(LoginRequiredMixin, FormView):
     template_name = 'cart/card_to_card.html'
     form_class = CardToCardPaymentForm
     success_url = reverse_lazy('history:orders_history')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # فرض بر این است که شما اطلاعات سبد خرید (ShoppingCart) را می‌خواهید
+        cart = ShoppingCart.objects.filter(user=self.request.user, is_paid=False).first()
+        
+        if cart:
+            # جمع هزینه‌های سفارش و ارسال
+            total_price = cart.price_to_pay  # هزینه سفارش (باید از مدل ShoppingCart به دست آید)
+
+            # ارسال مقادیر به context
+            context.update({
+                'total_price': total_price,
+            })
+        else:
+            # اگر سبد خرید پیدا نشد، مقادیر صفر را ارسال می‌کنیم
+            context.update({
+                'total_price': 0,
+            })
+        
+        return context
     
     def form_valid(self, form):
         card_number = form.cleaned_data['card_number']

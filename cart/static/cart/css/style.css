@@ -7,6 +7,8 @@
     flex-direction: column;
 }
 
+
+
 .section {
     background: white;
     padding: 35px;
@@ -284,5 +286,12 @@
     .remove-btn {
         top: 10px;
         left: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cart-item-footer {
+        flex-direction: column;
+        gap: 0px;
     }
 }

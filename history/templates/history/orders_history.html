@@ -79,7 +79,7 @@
 
                                     {% if product_order.file %}
                                         <br>
-                                        <span class="file-link"><a href="{{ product_order.file.path }}">فایل آپلود شده</a></span>
+                                        <span class="file-link"><a href="{{ product_order.file.url }}">فایل آپلود شده</a></span>
                                     {% endif %}
                                 
                                     {% if product_order.description %}
@@ -124,11 +124,11 @@
             
                                         {% if product_order.file_front %}
                                         <br>
-                                            <span class="file-link"><a href="{{ product_order.file_front.path }}">فایل آپلود شده(روی طرح)</a></span> - 
+                                            <span class="file-link"><a href="{{ product_order.file_front.url }}">فایل آپلود شده(روی طرح)</a></span> - 
                                         {% endif %}
                 
                                         {% if product_order.file_back %}
-                                            <span class="file-link"><a href="{{ product_order.file_back.path }}">فایل آپلود شده(پشت طرح)</a></span> - 
+                                            <span class="file-link"><a href="{{ product_order.file_back.url }}">فایل آپلود شده(پشت طرح)</a></span> - 
                                         {% endif %}
                                     
                                         {% if product_order.description %}
@@ -182,7 +182,7 @@
                 
                                         {% if product_order.file %}
                                             <br>
-                                            <span class="file-link"><a href="{{ product_order.file.path }}">فایل آپلود شده</a></span>
+                                            <span class="file-link"><a href="{{ product_order.file.url }}">فایل آپلود شده</a></span>
                                         {% endif %}
                                     
                                         {% if product_order.description %}
@@ -211,7 +211,7 @@
                         </button>
 
                     </div>
-                    <div class="order-total">{{ shopping_cart.paid_price }}</div>
+                    <div class="order-total">{{ shopping_cart.price_to_pay }}</div>
                 </div>
             </div> 
             {% endfor %}

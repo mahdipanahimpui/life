@@ -2,6 +2,13 @@ from django.db import models
 from accounts.models import User
 from products.models import InvoiceProduct, FlyerProduct, PrescriptionProduct
 from cart.models import ShoppingCart
+from django.core.exceptions import ValidationError
+
+def validate_file_size(file):
+    max_size = 50 * 1024 * 1024  # حداکثر حجم 5 مگابایت
+    if file.size > max_size:
+        raise ValidationError(f'حجم فایل نباید بیشتر از 5 مگابایت باشد. حجم فایل شما: {file.size / (1024 * 1024):.2f} مگابایت.')
+
 
 # ----------------------------------------------------------
 class BindingType(models.Model):
@@ -52,28 +59,28 @@ class DesignOption(models.Model):
 #  -------------------------------------------------------------------------------
 def invoice_file_path(instance, filename):
     """
-    مسیر فایل: media/invoice_orders/{order_id}/{filename}
+    مسیر فایل: invoice_orders/{order_id}/{filename}
     """
     order_id = instance.pk
-    return f'media/invoice_orders/id-{order_id}/{filename}'
+    return f'invoice_orders/id-{order_id}/{filename}'
 
 
 #  -------------------------------------------------------------------------------
 def flyer_file_path(instance, filename):
     """
-    مسیر فایل: media/flyer_orders/{order_id}/{filename}
+    مسیر فایل: flyer_orders/{order_id}/{filename}
     """
     order_id = instance.pk
-    return f'media/flyer_orders/id-{order_id}/{filename}'
+    return f'flyer_orders/id-{order_id}/{filename}'
 
 
 #  -------------------------------------------------------------------------------
 def prescription_file_path(instance, filename):
     """
-    مسیر فایل: media/prescription_orders/{flyer_id}/{filename}
+    مسیر فایل: prescription_orders/{flyer_id}/{filename}
     """
     order_id = instance.pk
-    return f'media/prescription_orders/id-{order_id}/{filename}'
+    return f'prescription_orders/id-{order_id}/{filename}'
 
 # -----------------------------------------------------------------------------
 class InvoiceProductOrder(models.Model):
@@ -99,7 +106,8 @@ class InvoiceProductOrder(models.Model):
     )
 
     file = models.FileField(
-        upload_to = invoice_file_path,  # استفاده از تابع custom
+        upload_to = invoice_file_path,
+        validators=[validate_file_size],
         null=True,
         blank=True
     )
@@ -169,13 +177,15 @@ class FlyerProductOrder(models.Model):
     )
 
     file_front = models.FileField(
-        upload_to = flyer_file_path,  # استفاده از تابع custom
+        upload_to = flyer_file_path,
+        validators=[validate_file_size],
         null=True,
         blank=True
     )
 
     file_back = models.FileField(
-        upload_to = flyer_file_path,  # استفاده از تابع custom
+        upload_to = flyer_file_path,
+        validators=[validate_file_size],
         null=True,
         blank=True
     )
@@ -266,7 +276,8 @@ class PrescriptionProductOrder(models.Model):
     )
 
     file = models.FileField(
-        upload_to = prescription_file_path,  # استفاده از تابع custom
+        upload_to = prescription_file_path,
+        validators=[validate_file_size],
         null=True,
         blank=True
     )

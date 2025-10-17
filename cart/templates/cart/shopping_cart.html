@@ -74,7 +74,7 @@
 
                         {% if invoice_order.file %}
                         <hr>
-                            <span class="file-link"><a href="{{ invoice_order.file.path }}">فایل آپلود شده</a></span>
+                            <span class="file-link"><a href="{{ invoice_order.file.url }}">فایل آپلود شده</a></span>
                         {% endif %}
                     
                         {% if invoice_order.description %}
@@ -130,11 +130,11 @@
 
                         {% if flyer_order.file_front %}
                         <hr>
-                            <span class="file-link"><a href="{{ flyer_order.file_front.path }}">فایل آپلود شده(روی طرح)</a></span>
+                            <span class="file-link"><a href="{{ flyer_order.file_front.url }}">فایل آپلود شده(روی طرح)</a></span>
                         {% endif %}
 
                         {% if flyer_order.file_back %}
-                            <span class="file-link"><a href="{{ flyer_order.file_back.path }}">فایل آپلود شده(پشت طرح)</a></span>
+                            <span class="file-link"><a href="{{ flyer_order.file_back.url }}">فایل آپلود شده(پشت طرح)</a></span>
                         {% endif %}
                     
                         {% if flyer_order.description %}
@@ -195,7 +195,7 @@
 
                         {% if prescription_order.file %}
                         <hr>
-                            <span class="file-link"><a href="{{ prescription_order.file.path }}">فایل آپلود شده</a></span>
+                            <span class="file-link"><a href="{{ prescription_order.file.url }}">فایل آپلود شده</a></span>
                         {% endif %}
                     
                         {% if prescription_order.description %}
@@ -209,6 +209,7 @@
                             <div class="cart-item-status">وضعیت: {{ prescription_order.status }}</div>
                             <div class="cart-item-price">{{ prescription_order.total_price }} تومان</div>
                         </div>
+
                     </div>
                 </div>
                 

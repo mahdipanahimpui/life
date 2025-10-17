@@ -1,9 +1,4 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+
 
 :root {
     --primary: #4a6cf7;
@@ -20,12 +15,7 @@
     --gradient: linear-gradient(135deg, #4a6cf7 0%, #2f4fdf 100%);
 }
 
-body {
-    padding-top: 80px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    color: var(--dark);
-    min-height: 100vh;
-} */
+
 
 /* محتوای اصلی */
 .content {

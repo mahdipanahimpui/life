@@ -310,28 +310,29 @@ select.filter-control {
     gap: 5px;
 }
 
-/* رسپانسیو */
+
 @media (max-width: 1200px) {
-    .side-by-side-fields {
-        grid-template-columns: repeat(1, 1fr);
-    }
-    
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 992px) {
-    .product-type-buttons {
-        grid-template-columns: 1fr;
+
+    .side-by-side-fields {
+        grid-template-columns: repeat(3, 1fr);
     }
     
     .products-grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 577) {
+@media (max-width: 577px) {
+    .product-type-buttons {
+        grid-template-columns: 1fr;
+    }
+
     .products_page {
         grid-template-columns: 1fr;
     }
@@ -346,13 +347,9 @@ select.filter-control {
     }
     
     .pagination-container {
-        flex-direction: column;
-        gap: 15px;
+        gap: 5px;
     }
     
-    .page-numbers {
-        order: -1;
-    }
 }
 
 /* استایل‌های جدید برای بخش فیلترها */

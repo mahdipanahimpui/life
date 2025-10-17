@@ -7,7 +7,9 @@ document.getElementById('continueShopping').addEventListener('click', function()
     window.location.href = this.dataset.url;
     });
 
-
+document.getElementById('checkout').addEventListener('click', function() {
+    window.location.href = this.dataset.url;
+    });
 
 
 

@@ -7,8 +7,23 @@
     <style>
         
         .side-by-side-fields {
-        grid-template-columns: repeat(4, 1fr) !important;
+            grid-template-columns: repeat(4, 1fr) !important;
         }
+
+        @media (max-width: 992px) {
+            .side-by-side-fields {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 577px) {
+            .side-by-side-fields {
+                grid-template-columns: 1fr !important;
+                gap: 0;
+            }
+        }
+
+
 
     </style>
 {% endblock %}

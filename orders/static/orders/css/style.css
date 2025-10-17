@@ -178,11 +178,11 @@
 }
 
 /* استایل‌های فرم سفارش */
-.order-form {
+/* .order-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1px;
-}
+} */
 
 .form-group {
     margin-bottom: 20px;
@@ -660,6 +660,31 @@ textarea.form-control {
     transform: translateX(5px);
 }
 
+.contact-text {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    z-index: 9999;
+}
+
+
+
+
 /* رسپانسیو */
 @media (max-width: 992px) {
     .product-detail {
@@ -678,9 +703,9 @@ textarea.form-control {
 }
 
 @media (max-width: 576px) {
-    .order-form {
+    /* .order-form {
         grid-template-columns: 1fr;
-    }
+    } */
     
     .product-meta {
         grid-template-columns: 1fr;

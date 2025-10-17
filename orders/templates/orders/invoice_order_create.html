@@ -124,6 +124,8 @@
             <div class="form-section-title full-width">
                 <h3>خدمات تکمیلی</h3>
             </div>
+            <p class="contact-text">برای استعلام قیمت خدمات تکمیلی با پشتیبانی تماس بگیرید.</p>
+
             
             {% for service in additional_services %}
             <div class="additional-service full-width">
@@ -148,7 +150,11 @@
                         </label>
                     </div>
                     
-                    <p style="text-align: center;">در صورتی که نیاز به طراحی دارید تماس حاصل فرمایید و یا به پیام رسان‌های تلگرام، ایتا و واتساپ به شماره (۰۷۹ ۶۹ ۵۹ ۰۹۲۰) مراجعه کنید.</p>
+                    <p style="text-align: justify;">
+                        در صورتی که نیاز به طراحی دارید تماس حاصل فرمایید و یا به پیام رسان‌های تلگرام، ایتا و واتساپ به شماره 
+                        <span style="white-space: nowrap;">(۰۷۹ ۶۹ ۵۹ ۰۹۲۰)</span>
+                        مراجعه کنید.
+                    </p>
                 </div>
                 
                 <br>
@@ -178,11 +184,14 @@
                 </div>
 
             </div>
-
-
         </form>
     </div>
     
+</div>
+
+
+<div id="loadingSpinner" class="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i> در حال آپلود فایل‌ها... لطفا صبر کنید.
 </div>
 
 {% endblock %}
@@ -247,8 +256,11 @@
     
     // محاسبه اولیه قیمت
     updateTotalPrice();
+
+
     
     </script>
     <script src="{% static 'orders/js/invoice_order_script.js' %}"></script>
+    <script src="{% static 'orders/js/loading_upload.js' %}"></script>
 
 {% endblock %}

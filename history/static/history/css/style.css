@@ -20,6 +20,16 @@
     transform: translateX(-5px);
 }
 
+.file-link {
+    color: var(--primary-dark);  
+    transition: all 0.3s ease;
+}
+
+.file-link:hover {
+    transform: scale(1.2); /* بزرگ شدن لینک */
+    text-decoration: underline; /* خط زیرین هنگام هاور */
+}
+
 /* محتوای اصلی */
 .content {
     padding: 40px 5%;
