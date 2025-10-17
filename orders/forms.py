@@ -39,7 +39,7 @@ class InvoiceProductOrderForm(forms.ModelForm):
             }),
             'with_number': forms.CheckboxInput(attrs={
                 'class': 'no-number-btn',
-                'id': 'noNumber'
+                'id': 'noNumber',
             }),
             'additional_services': forms.CheckboxSelectMultiple(attrs={
                 'class': 'form-check-input',

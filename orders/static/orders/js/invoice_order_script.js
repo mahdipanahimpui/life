@@ -62,16 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const colorRadios = document.querySelectorAll('.color-radio');
     const colorRadioLabels = document.querySelectorAll('.color-radio-label');
     
-    // ذخیره رنگ انتخابی قبلی
-    // let lastSelectedColor = 'red';
-    // let lastSelectedColorRadio = document.getElementById('colorRed');
-
     if (noNumberCheckbox.checked) {
         // غیرفعال کردن فیلد شماره
         startNumberInput.disabled = true;
         numberingLocationInput.disabled = true;
         noNumberCheckboxLabel.classList.add('active');
-
         startNumberInput.removeAttribute('required');
         numberingLocationInput.removeAttribute('required');
 
