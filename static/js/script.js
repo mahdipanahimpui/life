@@ -88,9 +88,13 @@ document.getElementById('floating-order').addEventListener('click', function(e) 
 });
 
 
-document.getElementById('floating-price').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('.price-btn').click();
+document.getElementById('floating-history').addEventListener('click', function(e) {
+    window.location.href = this.dataset.url;
+    setActiveButton(this);
+});
+
+document.getElementById('floating-cart').addEventListener('click', function(e) {
+    window.location.href = this.dataset.url;
     setActiveButton(this);
 });
 
